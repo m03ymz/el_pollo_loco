@@ -1,0 +1,82 @@
+/* custom-scrollbar.css */
+
+/* Horizontale Scrollbar */
+
+/* Track (Hintergrund) */
+::-webkit-scrollbar {
+    width: 10px; /* Breite der Scrollbar */
+    background-color: white; /* Farbe der gesamten Scrollbar (hell und kräftig) */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 5.1); /* Schatten für den Hintergrund */
+  }
+  
+  /* Handle (beweglicher Teil) */
+  ::-webkit-scrollbar-thumb {
+    background-color: #F7993E; /* Farbe des Scrollbalkengriffs (hell und kräftig) */
+    border-radius: 5px; /* Abrundung des Scrollbalkengriffs */
+    border: 2px solid #F7993E; /* Rand des Scrollbalkengriffs */
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3), inset 0px 0px 6px rgba(255, 255, 255, 0.3); /* Schatten für Tiefe und inneren Glanz */
+    filter: saturate(150%) brightness(120%); /* Farbsättigung und Helligkeit erhöhen */
+  }
+  
+  /* Handle bei Hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #FFDD00; /* Farbe des Scrollbalkengriffs */
+    border-radius: 5px; /* Abrundung des Scrollbalkengriffs */
+    border: 2px solid #FFDD00; /* Rand des Scrollbalkengriffs */
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3), inset 0px 0px 6px rgba(255, 255, 255, 0.3); /* Schatten für Tiefe und inneren Glanz */
+    filter: saturate(150%) brightness(120%); /* Farbsättigung und Helligkeit erhöhen */
+  }
+  
+  /* Track (Hintergrund) */
+  ::-webkit-scrollbar-track {
+    background: white; /* Farbe des Scrollbar-Hintergrunds */
+    border-radius: 5px; /* Abrundung des Scrollbar-Hintergrunds */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Schatten für den Hintergrund */
+  }
+  
+  /* Vertikale Scrollbar */
+  
+  /* Track (Hintergrund) */
+  ::-webkit-scrollbar-y {
+    height: 10px; /* Höhe der vertikalen Scrollbar */
+    background-color: #F7993E; /* Farbe der gesamten vertikalen Scrollbar (hell und kräftig) */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 5.1); /* Schatten für den Hintergrund */
+  }
+  
+  /* Handle (beweglicher Teil) */
+  ::-webkit-scrollbar-thumb-y {
+    background-color: #F7993E; /* Farbe des beweglichen Teils der vertikalen Scrollbar */
+    border-radius: 5px; /* Abrundung des beweglichen Teils der vertikalen Scrollbar */
+    border: 2px solid #F7993E; /* Rand des beweglichen Teils der vertikalen Scrollbar */
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3), inset 0px 0px 6px rgba(255, 255, 255, 0.3); /* Schatten für Tiefe und inneren Glanz */
+    filter: saturate(150%) brightness(120%); /* Farbsättigung und Helligkeit erhöhen */
+  }
+  
+  /* Handle bei Hover */
+  ::-webkit-scrollbar-thumb-y:hover {
+    background-color: #FF4747; /* Farbe des beweglichen Teils der vertikalen Scrollbar beim Hover */
+    border-radius: 5px; /* Abrundung des beweglichen Teils der vertikalen Scrollbar */
+    border: 2px solid #FF4747; /* Rand des beweglichen Teils der vertikalen Scrollbar */
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3), inset 0px 0px 6px rgba(255, 255, 255, 0.3); /* Schatten für Tiefe und inneren Glanz */
+    filter: saturate(150%) brightness(120%); /* Farbsättigung und Helligkeit erhöhen */
+  }
+  
+  /* Track (Hintergrund) */
+  ::-webkit-scrollbar-track-y {
+    background: white; /* Farbe des Hintergrunds der vertikalen Scrollbar */
+    border-radius: 5px; /* Abrundung des Hintergrunds der vertikalen Scrollbar */
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Schatten für den Hintergrund */
+  }
+  
+  /* Corner (Ecke) */
+  ::-webkit-scrollbar-corner {
+    background: transparent; /* Transparente Ecke der vertikalen Scrollbar */
+  }
+  
+  /* Verstecken der Scrollbar auf Mobilgeräten */
+  /* @media screen and (max-width: 768px) {
+    ::-webkit-scrollbar,
+    ::-webkit-scrollbar-y {
+        display: none;
+    }
+  } */
