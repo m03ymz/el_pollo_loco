@@ -35,19 +35,11 @@ h4 {
 canvas {
     background-color: black;
     border-radius: 10px;
+    margin-top: 135px;
     display: none;
 }
 
 #gameMenu {
-    /* background-image: url('img/9_intro_outro_screens/start/startscreen_2.png');
-    background-position: center;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;  
-    z-index: 1; */
     background-image: url(img/9_intro_outro_screens/start/startscreen_2.png);
     background-position: center;
     background-size: cover;
@@ -56,16 +48,14 @@ canvas {
     left: 50%;
     z-index: 1;
     transform: translate(-50%, -50%);
-    /* width: 854px; */
     width: 810px;
-    /* height: 482px; */
     height: 530px;
     border-radius: 10px;
 }
 
 #startButton {
     height: 64px;
-    width: 110px;
+    width: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,13 +73,13 @@ canvas {
 }
 
 #startButton:hover {
-    transform: scale(1.1); /* Vergrößern des Buttons beim Hover */
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); /* Hinzufügen eines leuchtenden Effekts */
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
 
 #restartButton {
     height: 64px;
-    width: 207px;
+    width: 217px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,8 +99,8 @@ canvas {
 }
 
 #restartButton:hover {
-    transform: scale(1.1); /* Vergrößern des Buttons beim Hover */
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); /* Hinzufügen eines leuchtenden Effekts */
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
 
 #controlsButton {
@@ -122,7 +112,7 @@ canvas {
     cursor: pointer;
     transition: all 0.3s ease;
     height: 64px;
-    width: 172px;
+    width: 182px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,8 +123,8 @@ canvas {
 }
 
 #controlsButton:hover {
-    transform: scale(1.1); /* Vergrößern des Buttons beim Hover */
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); /* Hinzufügen eines leuchtenden Effekts */
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
 
 #storyButton {
@@ -146,7 +136,7 @@ canvas {
     cursor: pointer;
     transition: all 0.3s ease;
     height: 64px;
-    width: 172px;
+    width: 147px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,8 +147,8 @@ canvas {
 }
 
 #storyButton:hover {
-    transform: scale(1.1); /* Vergrößern des Buttons beim Hover */
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); /* Hinzufügen eines leuchtenden Effekts */
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
 
 #controlInfos {
@@ -177,44 +167,31 @@ canvas {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 50px;
-    padding-right: 50px; /* Hinzufügen von rechtem Padding */
-    letter-spacing: 2px; /* Anpassung des Zeilenabstands */
+    letter-spacing: 2px; 
     border-radius: 10px;
     line-height: 1.5;
     display: none;
     >h3 {
-        font-size: 6vh;
+        font-size: 58px;
         margin-block-start: 0;
         margin-block-end: 0.5em;
     }
     >span {
-        font-size: 4vh;
+        font-size: 38px;
         margin: 10px 0;
         padding: 10px;
         border-radius: 8px; 
         width: 50%; 
         text-align: center; 
-        /* background-color: rgba(255, 255, 255, 0.1);  */
     }
 }
 
-/* #controlInfos span {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px; 
-    width: 50%; 
-    text-align: center; 
-    background-color: rgba(255, 255, 255, 0.2); 
-} */
-
-/* Alternierende Farben für jeden Span */
 #controlInfos span:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.2); /* Leichterer Hintergrund für ungerade Zeilen */
+    background-color: rgba(255, 255, 255, 0.2); 
 }
 
 #controlInfos span:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.1); /* Dunklerer Hintergrund für gerade Zeilen */
+    background-color: rgba(255, 255, 255, 0.1); 
 }
 
 #story {
@@ -229,15 +206,16 @@ canvas {
     background-color: #A0220A;
     color: #F7993E;
     font-size: 24px;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding-left: 50px;
-    padding-right: 50px; /* Hinzufügen von rechtem Padding */
-    letter-spacing: 2px; /* Anpassung des Zeilenabstands */
+    justify-content: center; */
+    padding: 20px;
+    box-sizing: border-box;
+    letter-spacing: 2px; 
     border-radius: 10px;
     line-height: 1.5;
+    overflow-y: scroll;
     display: none;
     >h3 {
         font-size: 6vh;
@@ -249,8 +227,45 @@ canvas {
     }
 }
 
+#story .content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    >.text { 
+        flex: 2;
+        padding-right: 20px; 
+    >h3 {
+        font-size: 48px;
+        margin-block-start: 0;
+        margin-block-end: 0.5em;
+    }
+    >span {
+        font-size: 24px;
+        display: block;
+        margin-bottom: 1em;
+    }
+    }
+}
+
+#story .images {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#story .images img {
+    max-width: 100%;
+    object-fit: cover; 
+    margin-bottom: 10px; 
+}
+
+#story .images img:nth-of-type(2),
+#story .images img:nth-of-type(3) {
+    transform: scaleX(-1); 
+}
+
 #muteButton {
-    /* padding: 18px 30px; */
     font-size: 45px;
     background-color: #A0220A;
     color: #F7993E;
@@ -271,29 +286,9 @@ canvas {
 }
 
 #muteButton:hover {
-    /* background-image: url('./img/mute.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 40px 40px; */
-    /* transition: background-image 0.3s ease;  */
     transform: scale(1.1); 
     box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
-
-/* #muteButton:hover img {
-    visibility: hidden;
-} */
-
-/* #muteButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
-}
-
-#soundOn:hover {
-    height: 40px;
-    width: 40px;
-    content: url('./img/mute.png');
-} */
 
 #settingButtons {
     position: absolute;
@@ -306,26 +301,13 @@ canvas {
 
 #gameOverImg {
     background-image: url('img/9_intro_outro_screens/game_over/game_over.png');
-    /* background-position: center;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;   */
     z-index: 99;
-    /* width: 720px;
-    height: 480px; */
-    /* width: 100%;
-    height: 100%; */
     height: 150px;
     width: 850px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* z-index: 5; */
-    /* background: url(./img/9_intro_outro_screens/game_over/you\ lost.png); */
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -334,26 +316,13 @@ canvas {
 
 #youWinImg {
     background-image: url('img/9_intro_outro_screens/game_over/you_win.png');
-    /* background-position: center;
-    background-size: cover;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;   */
     z-index: 99;
-    /* width: 720px;
-    height: 480px; */
-    /* width: 100%;
-    height: 100%; */
     height: 190px;
     width: 850px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* z-index: 5; */
-    /* background: url(./img/9_intro_outro_screens/game_over/you\ lost.png); */
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -361,7 +330,7 @@ canvas {
 }
 
 #rotateScreen {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: #F7C274;
     color: black;
@@ -374,6 +343,8 @@ canvas {
     text-align: center;
     font-size: 36px;
     gap: 18px;
+    padding: 10px;
+    box-sizing: border-box;
     display: none;
 }
 
@@ -406,8 +377,6 @@ canvas {
 
 #mobileButtons img {
     background-color: rgba(255, 255, 255, 0.5);
-    /* filter: drop-shadow(0px 4px 6px black); */
-    /* filter: drop-shadow(0px 0px 6px yellow); */
     filter: drop-shadow(0px 0px 6px #ab2524); 
     border-radius: 50%;
     height: 64px;
@@ -422,8 +391,8 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Dunkles Overlay */
-    z-index: 98; /* Z-Index unterhalb von Game Over Bild und Restart-Button */
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 98; 
     display: none;
 }
 
@@ -438,7 +407,7 @@ canvas {
 
 #imprintButton {
     height: 30px;
-    width: 78px;
+    width: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -455,7 +424,7 @@ canvas {
 
 #privacyPolicyButton {
     height: 30px;
-    width: 129px;
+    width: 132px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -471,13 +440,13 @@ canvas {
 }
 
 #imprintButton:hover {
-    transform: scale(1.1); /* Vergrößern des Buttons beim Hover */
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); /* Hinzufügen eines leuchtenden Effekts */
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
 
 #privacyPolicyButton:hover {
-    transform: scale(1.1); /* Vergrößern des Buttons beim Hover */
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); /* Hinzufügen eines leuchtenden Effekts */
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
 }
 
 #imprint {
@@ -496,24 +465,22 @@ canvas {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 50px;
-    padding-right: 50px; /* Hinzufügen von rechtem Padding */
-    letter-spacing: 2px; /* Anpassung des Zeilenabstands */
+    letter-spacing: 2px; 
     border-radius: 10px;
     line-height: 1.5;
     display: none;
     >h3 {
-        font-size: 6vh;
-        margin-block-start: 0.5em;
+        font-size: 58px;
+        margin-block-start: 0;
         margin-block-end: 0;
     }
     >h4 {
-        font-size: 3vh;
+        font-size: 28px;
         margin-block-start: 0.2em;
         margin-block-end: 0.2em;
     }
     >p {
-        font-size: 2.5vh;
+        font-size: 24px;
         margin-block-start: 0.1em;
         margin-block-end: 0.1em;
     }
@@ -534,27 +501,28 @@ canvas {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 50px;
-    padding-right: 50px; /* Hinzufügen von rechtem Padding */
-    letter-spacing: 2px; /* Anpassung des Zeilenabstands */
+    padding: 20px;
+    box-sizing: border-box;
+    letter-spacing: 2px; 
     border-radius: 10px;
     line-height: 1.5;
     overflow-y: scroll;
     display: none;
     >h3 {
-        font-size: 6vh;
+        font-size: 58px;
         margin-block-start: 0;
         margin-block-end: 0.5em;
     }
     >h4 {
-        font-size: 4vh;
+        font-size: 38px;
         margin-block-start: 0.5em;
         margin-block-end: 0.5em;
     }
     >p {
-        font-size: 3vh;
+        font-size: 24px;
         margin-block-start: 0.1em;
         margin-block-end: 0.1em;
+        text-align: center;
         >a {
             color: #F7993E;
         }
@@ -563,7 +531,7 @@ canvas {
         }
     }
     >ul {
-        font-size: 3vh;
+        font-size: 24px;
     }
 }
 
@@ -577,15 +545,12 @@ canvas {
     canvas {
         width: 100%;
     }
-    /* h1 {
-        display: none;
-    }   */
 }
 
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
-        /* width: 100%; */
+        margin-top: 0;
     }
     h1 {
         display: none;
@@ -601,20 +566,81 @@ canvas {
         border-radius: 0;
     }
     #mobileButtons {
-        display: flex;
-    }
-    h4 {
-        font-size: 5vh;
+        display: none;
     }
     #controlInfos {
+        height: 100vh;
+        width: 100vw;
+        top: 50%;
+        border-radius: 0;
+        >h3 {
+            font-size: 50px;
+        }
         >span {
-            font-size: 3vh;
+          font-size: 26px;
         }
     }
     #protectionButtons {
-        top: 5%;
+        bottom: 3%;
         right: 3%;
         gap: 10px;
+    }
+    #story {
+        height: 100vh;
+        width: 100vw;
+        top: 50%;
+        border-radius: 0;
+    }
+    #story .content {
+        >.text {
+            >h3 {
+                font-size: 34px;
+            }
+            >span {
+                font-size: 24px;
+            }
+        }
+    }
+    #imprint {
+        height: 100vh;
+        width: 100vw;
+        top: 50%;
+        border-radius: 0;
+        >h3 {
+            font-size: 56px;
+        }
+        >h4 {
+            font-size: 26px;
+        }
+        >p {
+            font-size: 22px;
+        }
+    }
+    #privacyPolicy {
+        height: 100vh;
+        width: 100vw;
+        top: 50%;
+        border-radius: 0;
+        >h3 {
+            font-size: 56px;
+        }
+        >h4 {
+            font-size: 36px;
+        }
+        >p {
+            font-size: 22px;
+        }
+        >ul {
+            font-size: 22px;
+        }
+    }
+    #gameOverImg {
+        height: 120px;
+        width: 800px;
+    }
+    #youWinImg {
+        height: 160px;
+        width: 800px;
     }
 }
 
@@ -635,23 +661,27 @@ canvas {
         width: 100%;
     }
     #startButton {
-        padding: 5px 10px;
-        font-size: 32px;
+        height: 48px;
+        font-size: 34px;
+        width: 97px;
     }
     #restartButton {
-        padding: 5px 10px;
-        font-size: 32px;
+        height: 48px;
+        font-size: 34px;
+        width: 172px;
     }
     #settingButtons {
-        right: 44%;
+        right: 3%;
     }
     #controlsButton {
-        font-size: 32px;
-        height: 40px;
-        width: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        font-size: 34px;
+        height: 48px;
+        width: 156px;
+    }
+    #storyButton {
+        height: 48px;
+        width: 128px;
+        font-size: 34px;
     }
     #muteButton {
         height: 40px;
@@ -668,9 +698,20 @@ canvas {
 
 @media(max-height: 380px) {
     #controlInfos {
-        >span {
-            font-size: 2.7vh;
+        >h3 {
+            font-size: 44px;
         }
+        >span {
+          font-size: 20px;
+        }
+    }
+    #gameOverImg {
+        height: 90px;
+        width: 640px;
+    }
+    #youWinImg {
+        height: 135px;
+        width: 640px;
     }
 }
 

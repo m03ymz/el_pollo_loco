@@ -126,6 +126,23 @@ class World {
                         scream_sound.volume = 0.3;
                         scream_sound.play();
                         this.character.hit();
+
+                        // Zielposition nach links
+                        let targetX = this.character.x - 100;
+                    
+                        // Bewege den Charakter schrittweise nach links
+                        let moveInterval = setInterval(() => {
+                        // Schrittweite
+                        let step = 7;
+                        // Wenn die aktuelle Position links von der Zielposition ist
+                        if (this.character.x > targetX) {
+                            // Bewege den Charakter um 'step' Einheiten nach links
+                            this.character.x -= step;
+                        } else {
+                            // Wenn die Zielposition erreicht ist, beende die Bewegung
+                            clearInterval(moveInterval);
+                        }
+                    }, 10); // Ändere die Dauer zwischen den Schritten, um die Geschwindigkeit anzupassen
                     }
                     }
                 }
@@ -253,6 +270,7 @@ class World {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.slice(0, -1).forEach((enemy) => { 
                 if (bottle.isColliding(enemy)) {
+                    bottle.splash = true;
                     kill_chicken.currentTime = 0;
                     kill_chicken.volume = 0.4;
                     kill_chicken.play();

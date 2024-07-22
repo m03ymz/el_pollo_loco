@@ -143,6 +143,14 @@ function startGame() {
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
+    if (window.matchMedia('(max-height: 480px)').matches) {
+        document.getElementById(`controlsText`).style.display = "none";
+        document.getElementById(`controlsButton`).style.height = "40px";
+        document.getElementById(`controlsButton`).style.width = "55px";
+        document.getElementById(`settingButtons`).style.gap = "10px";
+        document.getElementById(`settingButtons`).style.right = "44%";
+        document.getElementById(`mobileButtons`).style.display = "flex";
+    }
     gameStarted = true;
     initLevel();
     init();
@@ -161,7 +169,7 @@ function openControls() {
         document.getElementById('controlInfos').style.top = "58%";
     }
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'none';
+        document.getElementById('startButton').style.display = 'none';
     }
 }
 
@@ -171,7 +179,7 @@ function closeControls() {
     //     document.getElementById('storyButton').style.display = "flex";
     // }
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'flex';
+        document.getElementById('startButton').style.display = 'flex';
     }
 }
 
@@ -181,26 +189,16 @@ function openStory() {
     document.getElementById(`imprint`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'none';
+        document.getElementById('startButton').style.display = 'none';
     }
 }
 
 function closeStory() {
     document.getElementById(`story`).style.display = "none";
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'flex';
+        document.getElementById('startButton').style.display = 'flex';
     }
 }
-
-// function muteSound() {
-//     if (document.getElementById('soundOn').src.includes('sound_on.png')) {
-//         document.getElementById('soundOn').src = './img/mute.png';
-//         // Hier können Sie den Sound aktivieren oder Logik für das Einschalten des Sounds einfügen
-//     } else {
-//         document.getElementById('soundOn').src = './img/sound_on.png';
-//         // Hier können Sie den Sound deaktivieren oder Logik für das Ausschalten des Sounds einfügen
-//     }
-// }
 
 function muteSound() {
     const soundOnImage = document.getElementById('soundOn');
@@ -246,14 +244,14 @@ function openImprint() {
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'none';
+        document.getElementById('startButton').style.display = 'none';
     }
 }
 
 function closeImprint() {
     document.getElementById(`imprint`).style.display = "none";
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'flex';
+        document.getElementById('startButton').style.display = 'flex';
     }
 }
 
@@ -263,7 +261,7 @@ function openPrivacyPolicy() {
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'none';
+        document.getElementById('startButton').style.display = 'none';
     }
 }
 
@@ -273,6 +271,6 @@ function closePrivacyPolicy(event) {
     }
     document.getElementById('privacyPolicy').style.display = 'none';
     if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('mobileButtons').style.display = 'flex';
+        document.getElementById('startButton').style.display = 'flex';
     }
 }

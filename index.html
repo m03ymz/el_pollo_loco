@@ -32,24 +32,17 @@
     <script src="js/game.js"></script>
 </head>
 <body id="body">
-
     <div id="overlay"></div>
-    
     <h1>El Pollo Loco</h1>
-
     <canvas id="canvas" width="720" height="480">
         <img src="./img/12_mobile_buttons/left_button.png" alt="">
     </canvas>
-    
     <div id="gameMenu"></div>
-
     <div id="startButton" onclick="startGame()">START</div>
-
     <div id="restartButton" onclick="reloadGame()">GO TO MENU</div>
-    
     <div id="settingButtons">
         <div id="controlsButton" onclick="openControls()">
-            Controls
+            <span id="controlsText">Controls</span>
             <img src="./img/keyboard.png" alt="">
         </div>
         <div id="storyButton" onclick="openStory()">
@@ -60,7 +53,6 @@
             <img id="soundOn" src="./img/sound_on.png" alt="">
         </div>
     </div>
-
     <div id="controlInfos" onclick="closeControls()">
         <h3>Controls</h3>
         <span>move left: <b>A</b> or <b>←</b> </span>
@@ -68,8 +60,9 @@
         <span>jump with: <b>spacebar</b> </span>
         <span>attack with: <b>F</b> </span>
     </div>
-
     <div id="story" onclick="closeStory()">
+        <div class="content">
+        <div class="text">
         <h3>Welcome to El Pollo Loco</h3>
         <span>
             You are a fearless adventurer from Mexico, facing the ultimate challenge:<br>
@@ -82,17 +75,20 @@
             But be careful, for salsa is precious in the desert - don't waste it carelessly.<br>
             Let the adventure begin!
         </span>
+        </div>
+        <div class="images">
+            <img src="./img/pepe.png" alt="Image 1">
+            <img src="./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png" alt="Image 2">
+            <img src="./img/3_enemies_chicken/chicken_small/1_walk/1_w.png" alt="Image 3">
+        </div>
     </div>
-
+    </div>
     <div id="gameOverImg"></div>
-
     <div id="youWinImg"></div>
-
     <div id="rotateScreen">
         <img src="./img/screen-rotate.png" alt="">
         <span>Please rotate the Screen to enjoy the Game</span>
     </div>
-
     <div id="mobileButtons">
         <div id="mobileButtons_left">
             <img id="leftButton" src="./img/12_mobile_buttons/left_button.png" alt="">
@@ -103,12 +99,10 @@
             <img id="throwButton" src="./img/12_mobile_buttons/throw_button.png" alt="">
         </div>
     </div>
-
     <div id="protectionButtons">
         <div id="imprintButton" onclick="openImprint()">Imprint</div>
         <div id="privacyPolicyButton" onclick="openPrivacyPolicy()">Privacy Policy</div>
     </div>
-
     <div id="imprint" onclick="closeImprint()">
         <h3>Imprint</h3>
         <h4>Responsible for content according to § 5 TMG:</h4>
@@ -120,7 +114,6 @@
         <p>Email: max.mustermann@example.com</p>
         <p>Phone: +1 (555) 123-4567</p>
     </div>
-
     <div id="privacyPolicy" onclick="closePrivacyPolicy(event)">
         <h3>Privacy Policy</h3>
         <p>This Privacy Policy outlines how Max Mustermann processes your personal data when you visit our website or utilize our services.</p>
@@ -136,6 +129,5 @@
         <h4>Need more information?</h4>
         <p>If you have any questions about our Privacy Policy, please don't hesitate to contact us at <a href="mailto:max.mustermann@example.com">max.mustermann@example.com</a>.</p>
     </div>
-
 </body>
 </html>

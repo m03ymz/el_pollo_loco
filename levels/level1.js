@@ -69,11 +69,6 @@ level1 = new Level(
     ]
 );
 
-
-// setInterval(() => {
-//     level1.enemies.push(new Chicken(2500)); // Füge alle 3 Sekunden ein neues Huhn bei x = 3000 hinzu
-// }, 3000);
-
 let intervalTime = 5000; // Starte mit einem Intervall von 5 Sekunden
 
 const addChickenInterval = setInterval(() => {
