@@ -77,9 +77,30 @@
         </span>
         </div>
         <div class="images">
-            <img src="./img/pepe.png" alt="Image 1">
-            <img src="./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png" alt="Image 2">
-            <img src="./img/3_enemies_chicken/chicken_small/1_walk/1_w.png" alt="Image 3">
+            <div class="text-img">
+                <span>Pepe, a brave adventurer from Mexico, wields salsa sauce to battle giant desert chickens. He must defeat the leader without wasting his precious salsa.</span>
+                <img src="./img/pepe.png" alt="Image 1">
+            </div>
+            <div class="text-img">
+                <span>This enemy chicken roams the desert, ready to clash with Pepe. Tough and aggressive, it challenges any adventurer who dares to cross its path.</span>
+                <img src="./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png" alt="Image 2">
+            </div>
+            <div class="text-img">
+                <span>This small, pesky chick may be young, but it’s quick and relentless. Beware of its swift pecks and nimble moves as it defends its territory.</span>
+                <img src="./img/3_enemies_chicken/chicken_small/1_walk/1_w.png" alt="Image 3">
+            </div>
+            <div class="text-img">
+                <span>The Giant Chicken is a colossal menace, towering over the desert. Powerful and fearsome, it leads the feathered horde and presents the ultimate challenge for Pepe as the Endboss.</span>
+                <img src="./img/4_enemie_boss_chicken/3_attack/G13.png" alt="Image 3">
+            </div>
+            <div class="text-img">
+                <span>These shiny coins are scattered throughout the desert. Collect them to complete your collection and enhance your adventure.</span>
+                <img src="./img/8_coin/coin_1.png" alt="Image 3">
+            </div>
+            <div class="text-img">
+                <span>Collect these salsa bottles scattered across the desert. Only the collected bottles can be thrown. You’ll see your collected amount on a bar—don't waste them! Use them to ultimately take down the Endboss.</span>
+                <img src="./img/6_salsa_bottle/salsa_bottle.png" alt="Image 3">
+            </div>
         </div>
     </div>
     </div>
@@ -103,7 +124,7 @@
         <div id="imprintButton" onclick="openImprint()">Imprint</div>
         <div id="privacyPolicyButton" onclick="openPrivacyPolicy()">Privacy Policy</div>
     </div>
-    <div id="imprint" onclick="closeImprint()">
+    <div id="imprint" onclick="closeImprint(event)">
         <h3>Imprint</h3>
         <h4>Responsible for content according to § 5 TMG:</h4>
         <p>Max Mustermann</p>
@@ -111,8 +132,8 @@
         <p>Sampletown, ST 12345</p>
         <p>United States of America</p>
         <h4>Contact:</h4>
-        <p>Email: max.mustermann@example.com</p>
-        <p>Phone: +1 (555) 123-4567</p>
+        <p>Email: <a href="mailto:max.mustermann@example.com">max.mustermann@example.com</a></p>
+        <p>Phone: <a href="tel:+15551234567">+1 (555) 123-4567</a></p>
     </div>
     <div id="privacyPolicy" onclick="closePrivacyPolicy(event)">
         <h3>Privacy Policy</h3>

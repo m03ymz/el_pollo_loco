@@ -143,7 +143,15 @@ function startGame() {
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
-    if (window.matchMedia('(max-height: 480px)').matches) {
+    if (window.matchMedia('(max-height: 820px) and (max-width: 1180px)').matches) {
+        document.getElementById(`controlsText`).style.display = "none";
+        document.getElementById(`controlsButton`).style.height = "40px";
+        document.getElementById(`controlsButton`).style.width = "55px";
+        document.getElementById(`settingButtons`).style.gap = "10px";
+        document.getElementById(`settingButtons`).style.right = "44%";
+        document.getElementById(`mobileButtons`).style.display = "flex";
+    }
+    if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
         document.getElementById(`controlsButton`).style.width = "55px";
@@ -165,12 +173,15 @@ function openControls() {
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
-    if (gameStarted) {
-        document.getElementById('controlInfos').style.top = "58%";
-    }
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'none';
-    }
+    // if (gameStarted) {
+    //     document.getElementById('controlInfos').style.top = "50%";
+    // }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
 }
 
 function closeControls() {
@@ -178,9 +189,12 @@ function closeControls() {
     // if (!gameStarted) {
     //     document.getElementById('storyButton').style.display = "flex";
     // }
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'flex';
-    }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
 }
 
 function openStory() {
@@ -188,16 +202,22 @@ function openStory() {
     document.getElementById(`controlInfos`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'none';
-    }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
 }
 
 function closeStory() {
     document.getElementById(`story`).style.display = "none";
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'flex';
-    }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
 }
 
 function muteSound() {
@@ -243,16 +263,25 @@ function openImprint() {
     document.getElementById(`controlInfos`).style.display = "none";
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'none';
-    }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
 }
 
-function closeImprint() {
-    document.getElementById(`imprint`).style.display = "none";
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'flex';
+function closeImprint(event) {
+    if (event.target.tagName.toLowerCase() === 'a') {
+        return; 
     }
+    document.getElementById(`imprint`).style.display = "none";
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
 }
 
 function openPrivacyPolicy() {
@@ -260,9 +289,12 @@ function openPrivacyPolicy() {
     document.getElementById(`controlInfos`).style.display = "none";
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'none';
-    }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'none';
+    // }
 }
 
 function closePrivacyPolicy(event) {
@@ -270,7 +302,10 @@ function closePrivacyPolicy(event) {
         return; 
     }
     document.getElementById('privacyPolicy').style.display = 'none';
-    if (window.matchMedia('(max-height: 480px)').matches) {
-        document.getElementById('startButton').style.display = 'flex';
-    }
+    // if (window.matchMedia('(max-height: 600px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
+    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
+    //     document.getElementById('startButton').style.display = 'flex';
+    // }
 }
