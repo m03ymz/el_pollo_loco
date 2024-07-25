@@ -60,21 +60,35 @@ canvas {
     align-items: center;
     justify-content: center;
     font-size: 45px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    /* background-color: #A0220A; */
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
     position: absolute;
     top: 5%;
     left: 3%;
     z-index: 999;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
     transition: all 0.3s ease;
 }
 
+/* #startButton:hover {
+    background-image: url('./img/bg.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 15px 5px rgba(0, 0, 0, 0.6);
+    transform: translateY(-5px);
+} */
+
 #startButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #restartButton {
@@ -84,73 +98,123 @@ canvas {
     align-items: center;
     justify-content: center;
     font-size: 45px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
     position: absolute;
     top: 5%;
     left: 3%;
     z-index: 999;
-    transition: all 0.3s ease;
     letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
+    transition: all 0.3s ease;
     display: none;
 }
 
 #restartButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #controlsButton {
     font-size: 45px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
     height: 64px;
     width: 182px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
+    transition: all 0.3s ease;
 }
 
 #controlsButton img {
     height: 40px;
 }
 
+#controlsButton .default-img {
+    display: unset; 
+}
+
+#controlsButton .hover-img {
+    display: none; 
+}
+
+#controlsButton:hover .default-img {
+    display: none;
+}
+
+#controlsButton:hover .hover-img {
+    display: unset; 
+}
+
 #controlsButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #storyButton {
     font-size: 45px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
     height: 64px;
     width: 147px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
+    transition: all 0.3s ease;
 }
 
 #storyButton img {
     height: 40px;
 }
 
+#storyButton .default-img {
+    display: unset; 
+}
+
+#storyButton .hover-img {
+    display: none; 
+}
+
+#storyButton:hover .default-img {
+    display: none; 
+}
+
+#storyButton:hover .hover-img {
+    display: unset; 
+}
+
 #storyButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #controlInfos {
@@ -162,8 +226,13 @@ canvas {
     font-family: Helvetica;
     position: absolute;
     z-index: 9999;
-    background-color: #A0220A;
-    color: #F7993E;
+    /* background-color: #A0220A; */
+    background-image: url(./img/bg.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    color: antiquewhite; 
+    /* color: #F7993E; */
     font-size: 24px;
     display: flex;
     flex-direction: column;
@@ -181,7 +250,7 @@ canvas {
     margin-block-end: 0.5em;
 }
 
-#controlInfos span {
+/* #controlInfos span {
     font-size: 38px;
     margin: 10px 0;
     padding: 10px;
@@ -196,6 +265,34 @@ canvas {
 
 #controlInfos span:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.1); 
+} */
+
+#controlInfos span {
+    font-size: 38px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px; 
+    width: 50%; 
+    text-align: center; 
+    /* border: 2px solid rgba(255, 255, 255, 0.5); */
+    border: 2px solid rgba(250, 235, 215, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
+    transition: all 0.3s ease; /* Sanfte Übergänge für Hover-Effekte */
+    cursor: default;
+}
+
+#controlInfos span:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+#controlInfos span:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+#controlInfos span:hover {
+    border-color: rgba(255, 255, 255, 0.8); /* Intensiverer Border beim Hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3); /* Intensiverer Schatten beim Hover */
+    transform: translateY(-4px); /* Leichtes Anheben beim Hover */
 }
 
 #story {
@@ -207,8 +304,12 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: #A0220A;
-    color: #F7993E;
+    /* background-color: #A0220A; */
+    background-image: url(./img/bg.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    color: antiquewhite;
     font-size: 24px;
     /* display: flex; */
     /* flex-direction: column;
@@ -287,27 +388,43 @@ canvas {
     transform: scaleX(-1);
 }
 
-.text-img:nth-of-type(odd) {
-    background: linear-gradient(135deg, #A0220A 0%, #8D1A06 100%); /* Verlauf von dunklerem zu helleren Rot */
+/* .text-img:nth-of-type(odd) {
+    background: linear-gradient(135deg, #A0220A 0%, #8D1A06 100%); 
 }
 
 .text-img:nth-of-type(even) {
-    background: linear-gradient(135deg, #A0220A 0%, #8D1A06 100%); /* Gleicher Verlauf für Konsistenz */
+    background: linear-gradient(135deg, #A0220A 0%, #8D1A06 100%); 
+} */
+
+.text-img:nth-of-type(odd) {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('./img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.text-img:nth-of-type(even) {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('./img/bg.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 #muteButton {
     font-size: 45px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease; 
     display: none;
     height: 64px;
     width: 64px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
+    transition: transform 0.3s ease; 
 }
 
 #muteButton img {
@@ -315,9 +432,27 @@ canvas {
     width: 40px;
 }
 
+/* #muteButton .default-img {
+    display: unset; 
+}
+
+#muteButton .hover-img {
+    display: none; 
+}
+
+#muteButton:hover .default-img {
+    display: none; 
+}
+
+#muteButton:hover .hover-img {
+    display: unset; 
+} */
+
 #muteButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #settingButtons {
@@ -442,14 +577,18 @@ canvas {
     justify-content: center;
     align-items: center;
     font-size: 22px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
     z-index: 999;
-    transition: all 0.3s ease;
     letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
+    transition: all 0.3s ease;
 }
 
 #privacyPolicyButton {
@@ -459,24 +598,32 @@ canvas {
     justify-content: center;
     align-items: center;
     font-size: 22px;
-    background-color: #A0220A;
+    background-image: url(./img/bg2.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
     color: #F7993E;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
     z-index: 999;
-    transition: all 0.3s ease;
     letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: -1px 1px 5px 0px #000;
+    transition: all 0.3s ease;
 }
 
 #imprintButton:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #privacyPolicyButton:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 221, 0, 0.7); 
+    background-image: url('./img/bg4.jpg');
+    color: antiquewhite; 
+    box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-5px);
 }
 
 #imprint {
@@ -488,8 +635,12 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: #A0220A;
-    color: #F7993E;
+    /* background-color: #A0220A; */
+    background-image: url(./img/bg.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    color: antiquewhite;
     font-size: 24px;
     display: flex;
     flex-direction: column;
@@ -505,6 +656,7 @@ canvas {
     font-size: 58px;
     margin-block-start: 0;
     margin-block-end: 0;
+
 }
 
 #imprint h4 {
@@ -536,8 +688,12 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    background-color: #A0220A;
-    color: #F7993E;
+    /* background-color: #A0220A; */
+    background-image: url(./img/bg.jpg);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    color: antiquewhite;
     font-size: 24px;
     display: flex;
     flex-direction: column;

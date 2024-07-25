@@ -224,12 +224,10 @@ function muteSound() {
     const soundOnImage = document.getElementById('soundOn');
     if (soundOnImage.src.includes('sound_on.png')) {
         soundOnImage.src = './img/mute.png';
-        muteAllSounds(true); // Alle Sounds stumm schalten
-        // Hier können Sie den Sound aktivieren oder Logik für das Einschalten des Sounds einfügen
+        muteAllSounds(true);  
     } else {
         soundOnImage.src = './img/sound_on.png';
-        muteAllSounds(false); // Alle Sounds wieder aktivieren
-        // Hier können Sie den Sound deaktivieren oder Logik für das Ausschalten des Sounds einfügen
+        muteAllSounds(false); 
     }
 }
 
