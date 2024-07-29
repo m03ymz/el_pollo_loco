@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'zabras';
+    src:url('fonts/zabars.ttf')  format('truetype')
+}
+
+@font-face {
+    font-family: 'area-q-desert';
+    src: url('area-q-desert.ttf') format('truetype')   
+}
+
+
+
 body {
     display: flex;
     flex-direction: column;
@@ -227,7 +239,7 @@ canvas {
     position: absolute;
     z-index: 9999;
     /* background-color: #A0220A; */
-    background-image: url(./img/bg.jpg);
+    background-image: url(./img/bg1.jpg);
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -250,23 +262,6 @@ canvas {
     margin-block-end: 0.5em;
 }
 
-/* #controlInfos span {
-    font-size: 38px;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px; 
-    width: 50%; 
-    text-align: center; 
-}
-
-#controlInfos span:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.2); 
-}
-
-#controlInfos span:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.1); 
-} */
-
 #controlInfos span {
     font-size: 38px;
     margin: 10px 0;
@@ -274,10 +269,9 @@ canvas {
     border-radius: 8px; 
     width: 50%; 
     text-align: center; 
-    /* border: 2px solid rgba(255, 255, 255, 0.5); */
     border: 2px solid rgba(250, 235, 215, 0.5);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2); /* Schatten für den 3D-Effekt */
-    transition: all 0.3s ease; /* Sanfte Übergänge für Hover-Effekte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease; 
     cursor: default;
 }
 
@@ -296,7 +290,7 @@ canvas {
 }
 
 #story {
-    font-family: Helvetica;
+    font-family: 'area-q-desert';
     position: absolute;
     height: 530px;
     width: 940px;
@@ -305,7 +299,7 @@ canvas {
     transform: translate(-50%, -50%);
     z-index: 9999;
     /* background-color: #A0220A; */
-    background-image: url(./img/bg.jpg);
+    background-image: url(./img/bg1.jpg);
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -324,16 +318,6 @@ canvas {
     display: none;
 }
 
-/* #story h3 {
-    font-size: 6vh;
-    margin-block-start: 0;
-    margin-block-end: 0.5em;
-}
-
-#story span {
-    font-size: 2.5vh;
-} */
-
 #story .content {
     display: flex;
     flex-direction: column;
@@ -342,12 +326,16 @@ canvas {
 .text {
     text-align: center;
     margin-bottom: 10px;
+    cursor: default;
 }
 
 .text h3 {
-    font-size: 48px;
+    font-size: 72px;
     margin-block-start: 0;
-    margin-block-end: 0.5em;
+    margin-block-end: 0.3em;
+    font-family: 'zabras';
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .text span {
@@ -370,12 +358,34 @@ canvas {
     box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3); /* Sanfter innerer Schatten */
     border: 2px solid rgba(0, 0, 0, 0.2); /* Leichter Rand */
     margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.about-text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-text span:first-of-type {
+    font-family: 'zabras';
+    font-size: 44px;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.text-img:hover {
+    /* border-color: rgba(250, 235, 215, 0.8); */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px); 
 }
 
 .text-img span {
-    width: 60%;
     text-align: center;
     margin-left: 20px;
+    cursor: default;
+    font-size: 22px;
 }
 
 .text-img img {
@@ -384,9 +394,81 @@ canvas {
     margin-right: 20px;
 }
 
-.text-img:first-of-type img {
-    transform: scaleX(-1);
+.img-pepe:hover {
+    animation: pepeAnimation 1s steps(6) infinite;
 }
+
+.img-chicken-normal:hover {
+    animation: chickenNormalAnimation 0.7s steps(3) infinite;
+}
+
+.img-chick:hover {
+    animation: chickAnimation 0.9s steps(3) infinite;
+}
+
+.img-giant-chicken:hover {
+    animation: giantChickenAnimation 1.7s steps(8) infinite;
+}
+
+.img-coin:hover {
+    animation: coinAnimation 1s steps(2) infinite;
+}
+
+.img-salsa-bottle:hover {
+    animation: salsaBottleAnimation 1s steps(2) infinite;
+}
+
+@keyframes pepeAnimation {
+    0% { content: url('./img/pepe1.png'); }
+    16.67% { content: url('./img/pepe2.png'); }
+    33.33% { content: url('./img/pepe3.png'); }
+    50% { content: url('./img/pepe4.png'); }
+    66.67% { content: url('./img/pepe5.png'); }
+    83.33% { content: url('./img/pepe6.png'); }
+    100% { content: url('./img/pepe1.png'); }
+}
+
+@keyframes chickenNormalAnimation {
+    0% { content: url('./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png'); }
+    33.33% { content: url('./img/3_enemies_chicken/chicken_normal/1_walk/2_w.png'); }
+    66.66% { content: url('./img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'); }
+    100% { content: url('./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png'); }
+}
+
+@keyframes chickAnimation {
+    0% { content: url('./img/3_enemies_chicken/chicken_small/1_walk/1_w.png'); }
+    33.33% { content: url('./img/3_enemies_chicken/chicken_small/1_walk/2_w.png'); }
+    66.66% { content: url('./img/3_enemies_chicken/chicken_small/1_walk/3_w.png'); }
+    100% { content: url('./img/3_enemies_chicken/chicken_small/1_walk/1_w.png'); }
+}
+
+@keyframes giantChickenAnimation {
+    0% { content: url('./img/4_enemie_boss_chicken/3_attack/G13.png'); }
+    12.5% { content: url('./img/4_enemie_boss_chicken/3_attack/G14.png'); }
+    25% { content: url('./img/4_enemie_boss_chicken/3_attack/G15.png'); }
+    37.5% { content: url('./img/4_enemie_boss_chicken/3_attack/G16.png'); }
+    50% { content: url('./img/4_enemie_boss_chicken/3_attack/G17.png'); }
+    62.5% { content: url('./img/4_enemie_boss_chicken/3_attack/G18.png'); }
+    75% { content: url('./img/4_enemie_boss_chicken/3_attack/G19.png'); }
+    87.5% { content: url('./img/4_enemie_boss_chicken/3_attack/G20.png'); }
+    100% { content: url('./img/4_enemie_boss_chicken/3_attack/G13.png'); }
+}
+
+@keyframes coinAnimation {
+    0% { content: url('./img/8_coin/coin_1.png'); }
+    50% { content: url('./img/8_coin/coin_2.png'); }
+    100% { content: url('./img/8_coin/coin_1.png'); }
+}
+
+@keyframes salsaBottleAnimation {
+    0% { content: url('./img/6_salsa_bottle/1_salsa_bottle_on_ground.png'); }
+    50% { content: url('./img/6_salsa_bottle/2_salsa_bottle_on_ground.png'); }
+    100% { content: url('./img/6_salsa_bottle/1_salsa_bottle_on_ground.png'); }
+}
+
+/* .text-img:first-of-type img {
+    transform: scaleX(-1);
+} */
 
 /* .text-img:nth-of-type(odd) {
     background: linear-gradient(135deg, #A0220A 0%, #8D1A06 100%); 
@@ -397,13 +479,13 @@ canvas {
 } */
 
 .text-img:nth-of-type(odd) {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('./img/bg.jpg');
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('./img/bg1.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .text-img:nth-of-type(even) {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('./img/bg.jpg');
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url('./img/bg1.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -511,7 +593,7 @@ canvas {
     letter-spacing: 4px;
     text-align: center;
     font-size: 64px;
-    gap: 18px;
+    gap: 64px;
     padding: 28px;
     box-sizing: border-box;
     display: none;
@@ -631,7 +713,7 @@ canvas {
 }
 
 #imprint {
-    font-family: Helvetica;
+    font-family: system-ui;
     position: absolute;
     height: 530px;
     width: 940px;
@@ -640,7 +722,7 @@ canvas {
     transform: translate(-50%, -50%);
     z-index: 9999;
     /* background-color: #A0220A; */
-    background-image: url(./img/bg.jpg);
+    background-image: url(./img/bg1.jpg);
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -660,6 +742,7 @@ canvas {
     font-size: 58px;
     margin-block-start: 0;
     margin-block-end: 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 
 }
 
@@ -684,7 +767,7 @@ canvas {
 }
 
 #privacyPolicy {
-    font-family: Helvetica;
+    font-family: system-ui;
     position: absolute;
     height: 530px;
     width: 940px;
@@ -693,7 +776,7 @@ canvas {
     transform: translate(-50%, -50%);
     z-index: 9999;
     /* background-color: #A0220A; */
-    background-image: url(./img/bg.jpg);
+    background-image: url(./img/bg1.jpg);
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -715,6 +798,7 @@ canvas {
     font-size: 58px;
     margin-block-start: 0;
     margin-block-end: 0.5em;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 #privacyPolicy h4 {
@@ -740,12 +824,6 @@ canvas {
 
 #privacyPolicy ul {
     font-size: 24px;
-}
-
-
-@font-face {
-    font-family: 'zabras';
-    src:url('fonts/zabars.ttf')  format('truetype')
 }
 
 @media only screen and (max-width: 720px) {
@@ -783,7 +861,10 @@ canvas {
         width: 640px !important;
     }
     .text-img span {
-        font-size: 20px !important;
+        font-size: 18px !important;
+    }
+    .about-text span:first-of-type {
+        font-size: 28px !important;
     }
 }
 
@@ -873,7 +954,7 @@ canvas {
         border-radius: 0;
     }
     .text h3 {
-        font-size: 34px;
+        font-size: 58px;
     }
     .text span {
         font-size: 24px;
@@ -881,8 +962,11 @@ canvas {
     .text-img {
         height: 220px;
     }
+    .about-text span:first-of-type {
+        font-size: 38px;
+    }
     .text-img span {
-        font-size: 22px;
+        font-size: 20px;
     }
     .text-img img {
         height: 200px;
@@ -942,6 +1026,26 @@ canvas {
         width: 128px;
         font-size: 34px;
     }
+    #startButton:hover,
+    #restartButton:hover,
+    #controlsButton:hover,
+    #storyButton:hover,
+    #imprintButton:hover,
+    #privacyPolicyButton:hover,
+    #muteButton:hover {
+    background-image: url('./img/bg2.jpg'); 
+    color: #F7993E; 
+    box-shadow: -1px 1px 5px 0px #000; 
+    transform: none; 
+    }
+    #controlsButton:hover .default-img,
+    #storyButton:hover .default-img {
+    display: unset; 
+    }
+    #controlsButton:hover .hover-img,
+    #storyButton:hover .hover-img {
+    display: none; 
+    }
 }
 
 @media(min-width: 1024px) and (max-width: 1120px) {
@@ -954,6 +1058,12 @@ canvas {
         height: 48px;
         width: 128px;
         font-size: 34px;
+    }
+}
+
+@media(min-height: 601px) and (max-height: 664px) {
+    h1 {
+        top: -6%;
     }
 }
 

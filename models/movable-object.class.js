@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    hurt = false; // Zustand für Verletzungen
 
     applyGravity() {
         setInterval(() => {
@@ -43,13 +44,15 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+            console.log('Hit! Updated Energy:', this.energy, 'Percentage:', this.percentage);
         }
     }
 
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
-        return timePassed < 1.5; 
+        this.hurt = timePassed < 1.1; // Setze den hurt-Zustand
+        return this.hurt;
     }
 
     isDead() {

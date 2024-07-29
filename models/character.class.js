@@ -91,11 +91,11 @@ class Character extends MovableObject {
     
     animate() {
 
-        let idleTime = 0; 
+        let idleTime = 0;
 
         setInterval(() => {
             walking_sound.pause();
-            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if(!this.hurt && this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
                 walking_sound.volume = 0.5;
@@ -103,7 +103,7 @@ class Character extends MovableObject {
                 idleTime = 0; 
             }
 
-            if(this.world.keyboard.LEFT && this.x > -600) {
+            if(!this.hurt && this.world.keyboard.LEFT && this.x > -600) {
                 this.moveLeft();
                 this.otherDirection = true;
                 walking_sound.volume = 0.5;
@@ -111,7 +111,7 @@ class Character extends MovableObject {
                 idleTime = 0; 
             }
 
-            if(this.world.keyboard.SPACE && !this.isAboveGround()) {
+            if(!this.hurt && this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
                 jump_sound.currentTime = 0;
                 jump_sound.volume = 0.2;

@@ -143,15 +143,21 @@ function startGame() {
     document.getElementById(`story`).style.display = "none";
     document.getElementById(`imprint`).style.display = "none";
     document.getElementById(`privacyPolicy`).style.display = "none";
-    if (window.matchMedia('(max-height: 820px) and (max-width: 1180px)').matches) {
+    if (window.matchMedia('(max-height: 600px) and (max-width: 1024px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
         document.getElementById(`controlsButton`).style.width = "55px";
+        document.querySelector('#controlsButton img').style.height = "32px";
+        document.querySelector('#controlsButton img').style.width = "32px";
+        document.getElementById(`muteButton`).style.height = "40px";
+        document.getElementById(`muteButton`).style.width = "55px";
+        document.querySelector('#muteButton img').style.height = "32px";
+        document.querySelector('#muteButton img').style.width = "32px";
         document.getElementById(`settingButtons`).style.gap = "10px";
         document.getElementById(`settingButtons`).style.right = "44%";
         document.getElementById(`mobileButtons`).style.display = "flex";
     }
-    if (window.matchMedia('(min-height: 768px) and (max-height: 820px) and (min-width: 1024px) and (max-width: 1180px)').matches) {
+    if (window.matchMedia('(min-height: 601px) and (max-height: 820px) and (min-width: 1024px) and (max-width: 1180px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
         document.getElementById(`controlsButton`).style.width = "55px";
@@ -327,3 +333,4 @@ function closePrivacyPolicy(event) {
     //     document.getElementById('startButton').style.display = 'flex';
     // }
 }
+

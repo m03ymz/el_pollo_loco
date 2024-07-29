@@ -112,7 +112,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isDead) {
-                this.statusBar.setPercentage(this.character.energy);
+                // this.statusBar.setPercentage(this.character.energy);
                 if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                     if (this.character.speedY < 0 && this.character.y + this.character.height < enemy.y + enemy.height + enemy.offset.top) {
                         enemy.isDead = true;
@@ -126,21 +126,37 @@ class World {
                         scream_sound.volume = 0.3;
                         scream_sound.play();
                         this.character.hit();
+                        this.statusBar.setPercentage(this.character.energy);
 
-                        // Zielposition nach links
-                        let targetX = this.character.x - 100;
+                        // Zielposition nach links oder rechts
+                    let targetX;
+                    if (this.character.otherDirection) {
+                        // Wenn der Charakter nach links schaut, bewege ihn nach rechts
+                        targetX = this.character.x + 100;
+                    } else {
+                        // Wenn der Charakter nach rechts schaut, bewege ihn nach links
+                        targetX = this.character.x - 100;
+                    }
                     
-                        // Bewege den Charakter schrittweise nach links
-                        let moveInterval = setInterval(() => {
+                    // Bewege den Charakter schrittweise zur Zielposition
+                    let moveInterval = setInterval(() => {
                         // Schrittweite
                         let step = 7;
-                        // Wenn die aktuelle Position links von der Zielposition ist
-                        if (this.character.x > targetX) {
-                            // Bewege den Charakter um 'step' Einheiten nach links
-                            this.character.x -= step;
+                    
+                        if (this.character.otherDirection) {
+                            // Bewege den Charakter nach rechts, wenn die andere Richtung wahr ist
+                            if (this.character.x < targetX) {
+                                this.character.x += step;
+                            } else {
+                                clearInterval(moveInterval); // Beende die Bewegung, wenn die Zielposition erreicht ist
+                            }
                         } else {
-                            // Wenn die Zielposition erreicht ist, beende die Bewegung
-                            clearInterval(moveInterval);
+                            // Bewege den Charakter nach links, wenn die andere Richtung falsch ist
+                            if (this.character.x > targetX) {
+                                this.character.x -= step;
+                            } else {
+                                clearInterval(moveInterval); // Beende die Bewegung, wenn die Zielposition erreicht ist
+                            }
                         }
                     }, 10); // Ändere die Dauer zwischen den Schritten, um die Geschwindigkeit anzupassen
                     }
