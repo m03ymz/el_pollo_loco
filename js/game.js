@@ -34,7 +34,7 @@ function init(){
         background_melody.loop = true;
         background_melody.volume = 0.2;
         background_melody.play();
-    }, 2000); // Verzögerung von 2000 Millisekunden (2 Sekunden)
+    }, 2000);
 
 
     // // Hinzufügen des Event-Handlers, um den Hintergrundsound zu wiederholen
@@ -139,10 +139,29 @@ function startGame() {
     document.getElementById('muteButton').style.display = "flex";
     document.getElementById(`protectionButtons`).style.display = "none";
     document.getElementById(`storyButton`).style.display = "none";
-    document.getElementById(`controlInfos`).style.display = "none";
-    document.getElementById(`story`).style.display = "none";
-    document.getElementById(`imprint`).style.display = "none";
-    document.getElementById(`privacyPolicy`).style.display = "none";
+    closeControls();
+    closeStory();
+    closeImprint(event);
+    closePrivacyPolicy(event);
+    document.getElementById('controlInfos').style.cssText = 'height: 360px; width: 320px; top: 58%; margin-left: 550px;';
+    document.querySelectorAll('#controlInfos span').forEach(span => {
+        span.style.fontSize = '26px';
+        span.style.margin = '5px 0';
+        span.style.padding = '0';
+        span.style.width = '90%';
+    });
+    if (window.matchMedia('(max-width: 1450px)').matches) {
+        document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; top: 48%; margin-left: 230px; background-image: unset; color: black;';
+        document.querySelectorAll('#controlInfos h3').forEach(h3 => {
+            h3.style.display = 'none';
+        });
+        document.querySelectorAll('#controlInfos span').forEach(span => {
+            span.style.fontSize = '20px';
+        });
+    }
+    if (window.matchMedia('(max-height: 600px)').matches) {
+        document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; background-image: unset; color: black; top: 10%; margin-left: 0; transform: unset; left: unset;';
+    }
     if (window.matchMedia('(max-height: 600px) and (max-width: 1024px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
@@ -195,55 +214,82 @@ function reloadGame() {
 }
 
 function openControls() {
-    document.getElementById(`controlInfos`).style.display = "flex";
-    document.getElementById(`story`).style.display = "none";
-    document.getElementById(`imprint`).style.display = "none";
-    document.getElementById(`privacyPolicy`).style.display = "none";
-    // if (gameStarted) {
-    //     document.getElementById('controlInfos').style.top = "50%";
-    // }
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
+    document.getElementById('controlInfos').style.transition = 'none';
+
+    document.getElementById('controlInfos').style.display = 'flex';
+
+    if (window.matchMedia('(max-height: 600px)').matches && gameStarted) {
+        document.getElementById('controlInfos').style.left = 'unset'; 
+        document.getElementById('controlInfos').style.right = '-50%'; 
+    } else {
+        
+        document.getElementById('controlInfos').style.left = '100%'; 
+        document.getElementById('controlInfos').style.right = 'unset'; 
+    }
+
+    document.getElementById('controlInfos').style.opacity = '0'; 
+    document.getElementById('controlInfos').style.visibility = 'visible'; 
+
+  
+    document.getElementById('controlInfos').offsetHeight; 
+
+    if (window.matchMedia('(max-height: 600px)').matches && gameStarted) {
+        document.getElementById('controlInfos').style.transition = 'right 0.5s ease, opacity 0.5s ease'; 
+        document.getElementById('controlInfos').style.right = '1%'; 
+    } else {
+        document.getElementById('controlInfos').style.transition = 'left 0.5s ease, opacity 0.5s ease'; 
+        document.getElementById('controlInfos').style.left = '50%'; 
+    }
+
+    document.getElementById('controlInfos').style.opacity = '1';
+
+    closeStory();
+    closeImprint(event);
+    closePrivacyPolicy(event);
 }
 
 function closeControls() {
-    document.getElementById(`controlInfos`).style.display = "none";
-    // if (!gameStarted) {
-    //     document.getElementById('storyButton').style.display = "flex";
-    // }
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
+    document.getElementById('controlInfos').style.left = '100%'; 
+    document.getElementById('controlInfos').style.opacity = '0';
+
+    document.getElementById('controlInfos').addEventListener('transitionend', function() {
+        if (document.getElementById('controlInfos').style.left === '100%') {
+            document.getElementById('controlInfos').style.visibility = 'hidden';
+            document.getElementById('controlInfos').style.display = 'none'; 
+        }
+    }, { once: true }); 
 }
 
 function openStory() {
-    document.getElementById(`story`).style.display = "flex";
-    document.getElementById(`controlInfos`).style.display = "none";
-    document.getElementById(`imprint`).style.display = "none";
-    document.getElementById(`privacyPolicy`).style.display = "none";
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
+    document.getElementById('story').style.transition = 'none';
+
+    document.getElementById('story').style.display = 'flex';
+    document.getElementById('story').style.left = '100%'; 
+    document.getElementById('story').style.opacity = '0';
+    document.getElementById('story').style.visibility = 'visible';
+
+    document.getElementById('story').offsetHeight; 
+
+    document.getElementById('story').style.transition = 'left 0.5s ease, opacity 0.5s ease';
+
+    document.getElementById('story').style.left = '50%'; 
+    document.getElementById('story').style.opacity = '1'; 
+
+    closeControls();
+    closeImprint(event);
+    closePrivacyPolicy(event);
 }
 
 function closeStory() {
-    document.getElementById(`story`).style.display = "none";
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
+    document.getElementById('story').style.left = '100%'; 
+    document.getElementById('story').style.opacity = '0'; 
+
+    document.getElementById('story').addEventListener('transitionend', function() {
+        if (document.getElementById('story').style.left === '100%') {
+            document.getElementById('story').style.visibility = 'hidden';
+            document.getElementById('story').style.display = 'none'; 
+        }
+    }, { once: true }); 
 }
 
 function muteSound() {
@@ -283,54 +329,82 @@ function muteAllSounds(mute) {
 }
 
 function openImprint() {
-    document.getElementById(`imprint`).style.display = "flex";
-    document.getElementById(`controlInfos`).style.display = "none";
-    document.getElementById(`story`).style.display = "none";
-    document.getElementById(`privacyPolicy`).style.display = "none";
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
+   
+    document.getElementById('imprint').style.transition = 'none'; 
+
+    document.getElementById('imprint').style.display = 'flex';
+    document.getElementById('imprint').style.transform = 'translate(-50%, 100%)'; 
+    document.getElementById('imprint').style.opacity = '0'; 
+    document.getElementById('imprint').style.visibility = 'visible'; 
+
+   
+    document.getElementById('imprint').offsetHeight;
+
+    
+    document.getElementById('imprint').style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+
+    
+    document.getElementById('imprint').style.transform = 'translate(-50%, -50%)'; 
+    document.getElementById('imprint').style.opacity = '1'; 
+
+    closeControls();
+    closeStory();
+    closePrivacyPolicy(event);
 }
 
 function closeImprint(event) {
     if (event.target.tagName.toLowerCase() === 'a') {
         return; 
     }
-    document.getElementById(`imprint`).style.display = "none";
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
+   
+    document.getElementById('imprint').style.transform = 'translate(-50%, 100%)'; 
+    document.getElementById('imprint').style.opacity = '0'; 
+
+    
+    document.getElementById('imprint').addEventListener('transitionend', function() {
+        if (document.getElementById('imprint').style.transform === 'translate(-50%, 100%)') {
+            document.getElementById('imprint').style.visibility = 'hidden'; 
+            document.getElementById('imprint').style.display = 'none';
+        }
+    }, { once: true }); 
 }
 
 function openPrivacyPolicy() {
-    document.getElementById(`privacyPolicy`).style.display = "flex";
-    document.getElementById(`controlInfos`).style.display = "none";
-    document.getElementById(`story`).style.display = "none";
-    document.getElementById(`imprint`).style.display = "none";
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'none';
-    // }
+  
+    document.getElementById('privacyPolicy').style.transition = 'none'; 
+
+    document.getElementById('privacyPolicy').style.display = 'flex';
+    document.getElementById('privacyPolicy').style.transform = 'translate(-50%, 100%)'; 
+    document.getElementById('privacyPolicy').style.opacity = '0'; 
+    document.getElementById('privacyPolicy').style.visibility = 'visible';
+
+
+    document.getElementById('privacyPolicy').offsetHeight; 
+
+    document.getElementById('privacyPolicy').style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+
+  
+    document.getElementById('privacyPolicy').style.transform = 'translate(-50%, -50%)';
+    document.getElementById('privacyPolicy').style.opacity = '1'; 
+
+    closeControls();
+    closeStory();
+    closeImprint(event);
 }
 
 function closePrivacyPolicy(event) {
     if (event.target.tagName.toLowerCase() === 'a') {
         return; 
     }
-    document.getElementById('privacyPolicy').style.display = 'none';
-    // if (window.matchMedia('(max-height: 600px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
-    // if (window.matchMedia('(min-height: 1024px) and (min-width: 1366px)').matches) {
-    //     document.getElementById('startButton').style.display = 'flex';
-    // }
+    
+    document.getElementById('privacyPolicy').style.transform = 'translate(-50%, 100%)'; 
+    document.getElementById('privacyPolicy').style.opacity = '0'; 
+
+    document.getElementById('privacyPolicy').addEventListener('transitionend', function() {
+        if (document.getElementById('privacyPolicy').style.transform === 'translate(-50%, 100%)') {
+            document.getElementById('privacyPolicy').style.visibility = 'hidden'; 
+            document.getElementById('privacyPolicy').style.display = 'none';
+        }
+    }, { once: true }); 
 }
 
