@@ -38,6 +38,14 @@ class MovableObject extends DrawableObject {
                 this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    isCollidingRight(mo) {
+        // Überprüft, ob der rechte Rand des Charakters die linke Seite des anderen Objekts überschreitet
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+               this.x + this.width - this.offset.right < mo.x + mo.width - mo.offset.left &&
+               this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+               this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+    }
+
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {

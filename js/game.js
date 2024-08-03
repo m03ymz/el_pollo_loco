@@ -139,28 +139,42 @@ function startGame() {
     document.getElementById('muteButton').style.display = "flex";
     document.getElementById(`protectionButtons`).style.display = "none";
     document.getElementById(`storyButton`).style.display = "none";
+    document.getElementById(`controlsButton`).style.height = "64px";
+    document.getElementById(`controlsButton`).style.width = "182px";
+    document.getElementById(`controlsButton`).style.fontSize = "45px";
     closeControls();
     closeStory();
     closeImprint(event);
     closePrivacyPolicy(event);
-    document.getElementById('controlInfos').style.cssText = 'height: 360px; width: 320px; top: 58%; margin-left: 550px;';
+    document.getElementById('controlInfos').style.cssText = 'height: 400px; width: 340px; top: 58%; margin-left: 550px;';
     document.querySelectorAll('#controlInfos span').forEach(span => {
         span.style.fontSize = '26px';
         span.style.margin = '5px 0';
-        span.style.padding = '0';
+        span.style.padding = '2px 5px';
+        span.style.boxSizing = 'border-box';
         span.style.width = '90%';
+        span.style.justifyContent = 'space-between';
     });
     if (window.matchMedia('(max-width: 1450px)').matches) {
-        document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; top: 48%; margin-left: 230px; background-image: unset; color: black;';
+        document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; top: 49%; margin-left: 0; background-image: unset; color: black;';
         document.querySelectorAll('#controlInfos h3').forEach(h3 => {
             h3.style.display = 'none';
         });
         document.querySelectorAll('#controlInfos span').forEach(span => {
             span.style.fontSize = '20px';
+            span.style.width = '92%';
         });
     }
     if (window.matchMedia('(max-height: 600px)').matches) {
-        document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; background-image: unset; color: black; top: 10%; margin-left: 0; transform: unset; left: unset;';
+        document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 200px; background-image: unset; color: black; top: 15%; margin-left: 0; transform: unset; left: unset;';
+        document.querySelectorAll('#controlInfos span').forEach(span => {
+            span.style.setProperty('font-size', '16px', 'important');
+            span.style.margin = '3px 0';
+            span.style.padding = '2px 14px';
+            span.style.boxSizing = 'border-box';
+            span.style.width = '176px';
+            span.style.justifyContent = 'space-between';
+        });
     }
     if (window.matchMedia('(max-height: 600px) and (max-width: 1024px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
@@ -205,6 +219,7 @@ function startGame() {
         document.getElementById(`mobileButtons`).style.display = "flex";
     }
     gameStarted = true;
+    updateControls();
     initLevel();
     init();
 }
@@ -407,4 +422,57 @@ function closePrivacyPolicy(event) {
         }
     }, { once: true }); 
 }
+
+// function updateControls() {
+//     console.log('Window height:', window.innerHeight);
+//     if (window.innerHeight <= 600) {
+//         document.getElementById('controlMoveLeft').innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button.png" />';
+//         document.getElementById('controlMoveRight').innerHTML = 'move right: a';
+//         document.getElementById('controlJump').innerHTML = 'jump with: b';
+//         document.getElementById('controlAttack').innerHTML = 'attack with: c';
+//     } else {
+//         document.getElementById('controlMoveLeft').innerHTML = 'move left: <b>A</b> or <b>←</b>';
+//         document.getElementById('controlMoveRight').innerHTML = 'move right: <b>D</b> or <b>→</b>';
+//         document.getElementById('controlJump').innerHTML = 'jump with: <b>spacebar</b>';
+//         document.getElementById('controlAttack').innerHTML = 'attack with: <b>F</b>';
+//     }
+// }
+
+// updateControls();
+
+// window.addEventListener('resize', updateControls);
+
+function updateControls() {
+    // Holen der Elemente
+    const moveLeftElement = document.getElementById('controlMoveLeft');
+    const moveRightElement = document.getElementById('controlMoveRight');
+    const jumpElement = document.getElementById('controlJump');
+    const attackElement = document.getElementById('controlAttack');
+
+    // Bedingungen für unterschiedliche Fensterhöhen und Spielstatus
+    if (window.innerHeight <= 600) {
+        if (gameStarted) {
+            moveLeftElement.innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button.png" alt="" />';
+            moveRightElement.innerHTML = 'move right: <img src="./img/12_mobile_buttons/right_button.png" alt="" />';
+            jumpElement.innerHTML = 'jump with: <img src="./img/12_mobile_buttons/up_button.png" alt="" />';
+            attackElement.innerHTML = 'attack with: <img src="./img/12_mobile_buttons/throw_button.png" />';
+        } else {
+            moveLeftElement.innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button2.png" alt="" />';
+            moveRightElement.innerHTML = 'move right: <img src="./img/12_mobile_buttons/right_button2.png" alt="" />';
+            jumpElement.innerHTML = 'jump with: <img src="./img/12_mobile_buttons/up_button2.png" alt="" />';
+            attackElement.innerHTML = 'attack with: <img src="./img/12_mobile_buttons/throw_button2.png" />';
+        }
+    } else {
+        moveLeftElement.innerHTML = 'move left: <b>A</b> or <b>←</b>';
+        moveRightElement.innerHTML = 'move right: <b>D</b> or <b>→</b>';
+        jumpElement.innerHTML = 'jump with: <b>spacebar</b>';
+        attackElement.innerHTML = 'attack with: <b>F</b>';
+    }
+}
+
+// Initiales Update beim Laden der Seite
+document.addEventListener('DOMContentLoaded', updateControls);
+
+// Update bei jeder Größenänderung des Fensters
+window.addEventListener('resize', updateControls);
 

@@ -129,36 +129,39 @@ class World {
                         this.statusBar.setPercentage(this.character.energy);
 
                         // Zielposition nach links oder rechts
-                    let targetX;
+                        let targetX;
+
                     if (this.character.otherDirection) {
-                        // Wenn der Charakter nach links schaut, bewege ihn nach rechts
-                        targetX = this.character.x + 100;
+                        // Wenn der Charakter nach links schaut
+                        if (this.character.isCollidingRight(enemy)) {
+                            // Wenn der Charakter nach links schaut und der Treffer von rechts kommt
+                            targetX = this.character.x - 100;
+                        } else {
+                            // Wenn der Charakter nach links schaut und der Treffer nicht von rechts kommt
+                            targetX = this.character.x + 100;
+                        }
                     } else {
-                        // Wenn der Charakter nach rechts schaut, bewege ihn nach links
-                        targetX = this.character.x - 100;
+                            targetX = this.character.x - 100;
                     }
                     
                     // Bewege den Charakter schrittweise zur Zielposition
                     let moveInterval = setInterval(() => {
-                        // Schrittweite
-                        let step = 7;
+                        let step = 7; // Feinerer Schritt
                     
-                        if (this.character.otherDirection) {
-                            // Bewege den Charakter nach rechts, wenn die andere Richtung wahr ist
+                        if (Math.abs(this.character.x - targetX) > step) { // Nur bewegen, wenn der Unterschied groß genug ist
                             if (this.character.x < targetX) {
+                                // Bewege den Charakter nach rechts, wenn das Ziel weiter rechts liegt
                                 this.character.x += step;
-                            } else {
-                                clearInterval(moveInterval); // Beende die Bewegung, wenn die Zielposition erreicht ist
+                            } else if (this.character.x > targetX) {
+                                // Bewege den Charakter nach links, wenn das Ziel weiter links liegt
+                                this.character.x -= step;
                             }
                         } else {
-                            // Bewege den Charakter nach links, wenn die andere Richtung falsch ist
-                            if (this.character.x > targetX) {
-                                this.character.x -= step;
-                            } else {
-                                clearInterval(moveInterval); // Beende die Bewegung, wenn die Zielposition erreicht ist
-                            }
+                            // Beende die Bewegung, wenn das Ziel erreicht oder sehr nahe erreicht ist
+                            this.character.x = targetX;
+                            clearInterval(moveInterval);
                         }
-                    }, 10); // Ändere die Dauer zwischen den Schritten, um die Geschwindigkeit anzupassen
+                    }, 10); // Erhöhte Dauer zwischen den Schritten für eine sanftere Bewegung
                     }
                     }
                 }
