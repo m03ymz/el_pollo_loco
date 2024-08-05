@@ -13,12 +13,14 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
+
     offset = {
         top: 7,
         left: 7,
         right: 7,
         bottom: 7
     };
+
     splash = false;
 
     constructor(x, y, otherDirection) {
@@ -64,17 +66,11 @@ class ThrowableObject extends MovableObject {
         }, 50);
     }
 
-    // animateSplash() {
-    //     setInterval(() => {
-    //         this.playAnimation(this.IMAGES_SPLASH);
-    //     }, 100);
-    // }
-
     animateSplash() {
         let id = setInterval(() => {
             this.playAnimation(this.IMAGES_SPLASH);
             setTimeout(() => {
-                clearInterval(id); // Das Intervall nach dem ersten Durchlauf stoppen
+                clearInterval(id);
             }, 1000);
         }, 50);
     }

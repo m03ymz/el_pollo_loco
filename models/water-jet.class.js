@@ -3,15 +3,6 @@ class WaterJet extends MovableObject {
     width = 400;
     height = 400;
 
-    // IMAGES = [
-    //     'img/Rock_statue_mother_ground_shadow.png'
-    // ];
-
-    // constructor(x) {
-    //     super().loadImage('img/Rock_statue_mother_ground_shadow.png');
-    //     this.x = -560;
-    // }
-
     IMAGES = [
         'img/11_water/water90000.png',
         'img/11_water/water90000.png',
@@ -65,11 +56,8 @@ class WaterJet extends MovableObject {
     }
 
     animate() {
-        
-    
         setInterval(() => {
                 this.playAnimation(this.IMAGES);
         }, 25);
     }
-
 }

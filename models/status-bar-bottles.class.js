@@ -57,5 +57,4 @@ class StatusBarBottles extends DrawableObject {
         }
         this.setPercentage(this.percentage);
     }
-
 }

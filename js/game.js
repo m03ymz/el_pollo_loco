@@ -14,7 +14,7 @@ let rooster2_sound = new Audio('audio/rooster.mp3');
 let first_contact_endboss_sound = new Audio('audio/first_contact_endboss.mp3');
 let scream_sound = new Audio('audio/scream.mp3');
 let throw_sound = new Audio('audio/throw.mp3');
-// let throw_hit_sound = new Audio('audio/throw_hit.mp3');
+let throw_hit_sound = new Audio('audio/throw_hit.mp3');
 let endboss_scream_sound = new Audio('audio/endboss_scream.mp3');
 let sandstorm_sound = new Audio('audio/sandstorm.mp3');
 let jump_sound = new Audio('audio/jump.mp3');
@@ -35,75 +35,121 @@ function init(){
         background_melody.volume = 0.2;
         background_melody.play();
     }, 2000);
-
-
-    // // Hinzufügen des Event-Handlers, um den Hintergrundsound zu wiederholen
-    // background_sound.addEventListener('ended', function() {
-    //     this.currentTime = 0; // Setze die Zeit auf den Anfang
-    //     this.play(); // Spiele den Sound erneut ab
-    // }, false);
-    
-    // Fügen Sie hier den Rest Ihrer Initialisierungslogik hinzu, falls vorhanden
-
-    // console.log('My Character is', world.character); 
-
-    // character.src = '../img/2_character_pepe/2_walk/W-21.png'
-
-    // ctx.drawImage(character, 20, 20, 50, 150);
 }
 
-window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 37 || e.key == 'a') {
-        keyboard.LEFT = true;
-    }
+// window.addEventListener("keydown", (e) => {
+//     if (e.keyCode == 37 || e.key == 'a') {
+//         keyboard.LEFT = true;
+//     }
 
-    if (e.keyCode == 39 || e.key == 'd') {
-        keyboard.RIGHT = true;
-    }
+//     if (e.keyCode == 39 || e.key == 'd') {
+//         keyboard.RIGHT = true;
+//     }
 
-    if (e.keyCode == 38 || e.key == 'w') {
-        keyboard.UP = true;
-    }
+//     if (e.keyCode == 38 || e.key == 'w') {
+//         keyboard.UP = true;
+//     }
 
-    if (e.keyCode == 40 || e.key == 's') {
-        keyboard.DOWN = true;
-    }
+//     if (e.keyCode == 40 || e.key == 's') {
+//         keyboard.DOWN = true;
+//     }
 
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
+//     if (e.keyCode == 32) {
+//         keyboard.SPACE = true;
+//     }
 
-    if (e.keyCode == 70) {
-        keyboard.F = true;
-    }
-});
+//     if (e.keyCode == 70) {
+//         keyboard.F = true;
+//     }
+// });
 
+// const keyMap = {
+//     'ArrowLeft': 'LEFT',
+//     'a': 'LEFT',
+//     'ArrowRight': 'RIGHT',
+//     'd': 'RIGHT',
+//     'ArrowUp': 'UP',
+//     'w': 'UP',
+//     'ArrowDown': 'DOWN',
+//     's': 'DOWN',
+//     ' ': 'SPACE',
+//     'f': 'F'
+// };
 
-window.addEventListener("keyup", (e) => {
-    if (e.keyCode == 37 || e.key == 'a') {
-        keyboard.LEFT = false;
-    }
+// window.addEventListener("keydown", (e) => {
+//     if (keyMap[e.key] !== undefined) {
+//         keyboard[keyMap[e.key]] = true;
+//     }
+// });
 
-    if (e.keyCode == 39 || e.key == 'd') {
-        keyboard.RIGHT = false;
-    }
+// window.addEventListener("keyup", (e) => {
+//     if (e.keyCode == 37 || e.key == 'a') {
+//         keyboard.LEFT = false;
+//     }
 
-    if (e.keyCode == 38 || e.key == 'w') {
-        keyboard.UP = false;
-    }
+//     if (e.keyCode == 39 || e.key == 'd') {
+//         keyboard.RIGHT = false;
+//     }
 
-    if (e.keyCode == 40 || e.key == 's') {
-        keyboard.DOWN = false;
-    }
+//     if (e.keyCode == 38 || e.key == 'w') {
+//         keyboard.UP = false;
+//     }
 
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
+//     if (e.keyCode == 40 || e.key == 's') {
+//         keyboard.DOWN = false;
+//     }
 
-    if (e.keyCode == 70) {
-        keyboard.F = false;
+//     if (e.keyCode == 32) {
+//         keyboard.SPACE = false;
+//     }
+
+//     if (e.keyCode == 70) {
+//         keyboard.F = false;
+//     }
+// });
+
+// window.addEventListener("keyup", (e) => {
+//     const keyMap = {
+//         '37': 'LEFT',  // Pfeil links
+//         '39': 'RIGHT', // Pfeil rechts
+//         '38': 'UP',    // Pfeil hoch
+//         '40': 'DOWN',  // Pfeil runter
+//         '32': 'SPACE', // Leertaste
+//         '70': 'F'      // 'F' Taste
+//     };
+
+//     const key = e.keyCode.toString();
+//     if (keyMap[key] || e.key === 'a' || e.key === 'd' || e.key === 'w' || e.key === 's') {
+//         keyboard[keyMap[key] || e.key.toUpperCase()] = false;
+//     }
+// });
+
+// Funktion zur Aktualisierung des Keyboard-Status
+function updateKeyboardState(e, isKeyDown) {
+    const keyMap = {
+        '37': 'LEFT', // Pfeil nach links
+        '39': 'RIGHT', // Pfeil nach rechts
+        '38': 'UP', // Pfeil nach oben
+        '40': 'DOWN', // Pfeil nach unten
+        '32': 'SPACE', // Leertaste
+        '70': 'F', // Taste F
+        'a': 'LEFT', // Taste a
+        'd': 'RIGHT', // Taste d
+        'w': 'UP', // Taste w
+        's': 'DOWN' // Taste s
+    };
+
+    const keyName = keyMap[e.keyCode] || keyMap[e.key];
+    if (keyName !== undefined) {
+        keyboard[keyName] = isKeyDown;
     }
-});
+}
+
+// Ereignis-Listener für Tastendruck
+window.addEventListener("keydown", (e) => updateKeyboardState(e, true));
+
+// Ereignis-Listener für Tastenvorlassung
+window.addEventListener("keyup", (e) => updateKeyboardState(e, false));
 
 document.addEventListener('DOMContentLoaded', function() {
     let leftButton = document.getElementById('leftButton');
@@ -132,6 +178,28 @@ function setupTouchEvent(element, actionStart, actionEnd) {
 let gameStarted = false;
     
 function startGame() {
+    closeControls();
+    closeStory();
+    closeImprint(event);
+    closePrivacyPolicy(event);
+    addDeviceSpecificDesigns();
+    gameStarted = true;
+    updateControls();
+    initLevel();
+    init();
+}
+
+function addDeviceSpecificDesigns() {
+    addStandardStartGameSettings();
+    addStandardControlinfosDisplay();
+    addSmallerControlinfosDisplay(); 
+    addMobileControlinfosDisplay();
+    addMobileDesign();
+    addTabletDesign();
+    addBigTabletDesign();
+}
+
+function addStandardStartGameSettings() {
     document.getElementById(`gameMenu`).style.display = "none";
     document.getElementById(`startButton`).style.display = "none";
     document.getElementById('gameOverImg').style.display = "none";
@@ -142,10 +210,9 @@ function startGame() {
     document.getElementById(`controlsButton`).style.height = "64px";
     document.getElementById(`controlsButton`).style.width = "182px";
     document.getElementById(`controlsButton`).style.fontSize = "45px";
-    closeControls();
-    closeStory();
-    closeImprint(event);
-    closePrivacyPolicy(event);
+}
+
+function addStandardControlinfosDisplay() {
     document.getElementById('controlInfos').style.cssText = 'height: 400px; width: 340px; top: 58%; margin-left: 550px;';
     document.querySelectorAll('#controlInfos span').forEach(span => {
         span.style.fontSize = '26px';
@@ -155,6 +222,9 @@ function startGame() {
         span.style.width = '90%';
         span.style.justifyContent = 'space-between';
     });
+}
+
+function addSmallerControlinfosDisplay() {
     if (window.matchMedia('(max-width: 1450px)').matches) {
         document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; top: 49%; margin-left: 0; background-image: unset; color: black;';
         document.querySelectorAll('#controlInfos h3').forEach(h3 => {
@@ -165,6 +235,9 @@ function startGame() {
             span.style.width = '92%';
         });
     }
+}
+
+function addMobileControlinfosDisplay() {
     if (window.matchMedia('(max-height: 600px)').matches) {
         document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 200px; background-image: unset; color: black; top: 15%; margin-left: 0; transform: unset; left: unset;';
         document.querySelectorAll('#controlInfos span').forEach(span => {
@@ -176,6 +249,9 @@ function startGame() {
             span.style.justifyContent = 'space-between';
         });
     }
+}
+
+function addMobileDesign() {
     if (window.matchMedia('(max-height: 600px) and (max-width: 1024px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
@@ -190,6 +266,9 @@ function startGame() {
         document.getElementById(`settingButtons`).style.right = "44%";
         document.getElementById(`mobileButtons`).style.display = "flex";
     }
+}
+
+function addTabletDesign() {
     if (window.matchMedia('(min-height: 601px) and (max-height: 820px) and (min-width: 1024px) and (max-width: 1180px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
@@ -204,6 +283,9 @@ function startGame() {
         document.getElementById(`settingButtons`).style.right = "3%";
         document.getElementById(`mobileButtons`).style.display = "flex";
     }
+}
+
+function addBigTabletDesign() {
     if (window.matchMedia('(min-height: 1024px) and (max-height: 1024px) and (min-width: 1366px) and (max-width: 1366px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
         document.getElementById(`controlsButton`).style.height = "40px";
@@ -218,10 +300,6 @@ function startGame() {
         document.getElementById(`settingButtons`).style.right = "3%";
         document.getElementById(`mobileButtons`).style.display = "flex";
     }
-    gameStarted = true;
-    updateControls();
-    initLevel();
-    init();
 }
 
 function reloadGame() {
@@ -229,80 +307,59 @@ function reloadGame() {
 }
 
 function openControls() {
-    document.getElementById('controlInfos').style.transition = 'none';
-
-    document.getElementById('controlInfos').style.display = 'flex';
-
-    if (window.matchMedia('(max-height: 600px)').matches && gameStarted) {
-        document.getElementById('controlInfos').style.left = 'unset'; 
-        document.getElementById('controlInfos').style.right = '-50%'; 
-    } else {
-        
-        document.getElementById('controlInfos').style.left = '100%'; 
-        document.getElementById('controlInfos').style.right = 'unset'; 
-    }
-
-    document.getElementById('controlInfos').style.opacity = '0'; 
-    document.getElementById('controlInfos').style.visibility = 'visible'; 
-
-  
-    document.getElementById('controlInfos').offsetHeight; 
-
-    if (window.matchMedia('(max-height: 600px)').matches && gameStarted) {
-        document.getElementById('controlInfos').style.transition = 'right 0.5s ease, opacity 0.5s ease'; 
-        document.getElementById('controlInfos').style.right = '1%'; 
-    } else {
-        document.getElementById('controlInfos').style.transition = 'left 0.5s ease, opacity 0.5s ease'; 
-        document.getElementById('controlInfos').style.left = '50%'; 
-    }
-
-    document.getElementById('controlInfos').style.opacity = '1';
-
+    let controlInfos = document.getElementById('controlInfos');
+    let isMobile = window.matchMedia('(max-height: 600px)').matches && gameStarted;
+    controlInfos.style.transition = 'none';
+    controlInfos.style.display = 'flex';
+    controlInfos.style.opacity = '0'; 
+    controlInfos.style.visibility = 'visible'; 
+    controlInfos.style[isMobile ? 'right' : 'left'] = isMobile ? '-50%' : '100%';
+    controlInfos.style[isMobile ? 'left' : 'right'] = 'unset';
+    controlInfos.offsetHeight; 
+    controlInfos.style.transition = `${isMobile ? 'right' : 'left'} 0.5s ease, opacity 0.5s ease`;
+    controlInfos.style[isMobile ? 'right' : 'left'] = isMobile ? '1%' : '50%';
+    controlInfos.style.opacity = '1'; 
     closeStory();
     closeImprint(event);
     closePrivacyPolicy(event);
 }
 
 function closeControls() {
-    document.getElementById('controlInfos').style.left = '100%'; 
-    document.getElementById('controlInfos').style.opacity = '0';
-
-    document.getElementById('controlInfos').addEventListener('transitionend', function() {
-        if (document.getElementById('controlInfos').style.left === '100%') {
-            document.getElementById('controlInfos').style.visibility = 'hidden';
-            document.getElementById('controlInfos').style.display = 'none'; 
+    let controlInfos = document.getElementById('controlInfos');
+    controlInfos.style.left = '100%'; 
+    controlInfos.style.opacity = '0';
+    controlInfos.addEventListener('transitionend', function() {
+        if (controlInfos.style.left === '100%') {
+            controlInfos.style.visibility = 'hidden';
+            controlInfos.style.display = 'none'; 
         }
     }, { once: true }); 
 }
 
 function openStory() {
-    document.getElementById('story').style.transition = 'none';
-
-    document.getElementById('story').style.display = 'flex';
-    document.getElementById('story').style.left = '100%'; 
-    document.getElementById('story').style.opacity = '0';
-    document.getElementById('story').style.visibility = 'visible';
-
-    document.getElementById('story').offsetHeight; 
-
-    document.getElementById('story').style.transition = 'left 0.5s ease, opacity 0.5s ease';
-
-    document.getElementById('story').style.left = '50%'; 
-    document.getElementById('story').style.opacity = '1'; 
-
+    let story = document.getElementById('story');
+    story.style.transition = 'none';
+    story.style.display = 'flex';
+    story.style.left = '100%'; 
+    story.style.opacity = '0';
+    story.style.visibility = 'visible';
+    story.offsetHeight; 
+    story.style.transition = 'left 0.5s ease, opacity 0.5s ease';
+    story.style.left = '50%'; 
+    story.style.opacity = '1'; 
     closeControls();
     closeImprint(event);
     closePrivacyPolicy(event);
 }
 
 function closeStory() {
-    document.getElementById('story').style.left = '100%'; 
-    document.getElementById('story').style.opacity = '0'; 
-
-    document.getElementById('story').addEventListener('transitionend', function() {
-        if (document.getElementById('story').style.left === '100%') {
-            document.getElementById('story').style.visibility = 'hidden';
-            document.getElementById('story').style.display = 'none'; 
+    let story = document.getElementById('story');
+    story.style.left = '100%'; 
+    story.style.opacity = '0'; 
+    story.addEventListener('transitionend', function() {
+        if (story.style.left === '100%') {
+            story.style.visibility = 'hidden';
+            story.style.display = 'none'; 
         }
     }, { once: true }); 
 }
@@ -332,7 +389,7 @@ function muteAllSounds(mute) {
     first_contact_endboss_sound.muted = mute;
     scream_sound.muted = mute;
     throw_sound.muted = mute;
-    // throw_hit_sound.muted = mute;
+    throw_hit_sound.muted = mute;
     endboss_scream_sound.muted = mute;
     sandstorm_sound.muted = mute;
     jump_sound.muted = mute;
@@ -344,135 +401,99 @@ function muteAllSounds(mute) {
 }
 
 function openImprint() {
-   
-    document.getElementById('imprint').style.transition = 'none'; 
-
-    document.getElementById('imprint').style.display = 'flex';
-    document.getElementById('imprint').style.transform = 'translate(-50%, 100%)'; 
-    document.getElementById('imprint').style.opacity = '0'; 
-    document.getElementById('imprint').style.visibility = 'visible'; 
-
-   
-    document.getElementById('imprint').offsetHeight;
-
-    
-    document.getElementById('imprint').style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-
-    
-    document.getElementById('imprint').style.transform = 'translate(-50%, -50%)'; 
-    document.getElementById('imprint').style.opacity = '1'; 
-
+    let imprint = document.getElementById('imprint');
+    imprint.style.transition = 'none'; 
+    imprint.style.display = 'flex';
+    imprint.style.transform = 'translate(-50%, 100%)'; 
+    imprint.style.opacity = '0'; 
+    imprint.style.visibility = 'visible'; 
+    imprint.offsetHeight;
+    imprint.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    imprint.style.transform = 'translate(-50%, -50%)'; 
+    imprint.style.opacity = '1'; 
     closeControls();
     closeStory();
     closePrivacyPolicy(event);
 }
 
 function closeImprint(event) {
+    let imprint = document.getElementById('imprint');
     if (event.target.tagName.toLowerCase() === 'a') {
         return; 
     }
-   
-    document.getElementById('imprint').style.transform = 'translate(-50%, 100%)'; 
-    document.getElementById('imprint').style.opacity = '0'; 
-
-    
-    document.getElementById('imprint').addEventListener('transitionend', function() {
-        if (document.getElementById('imprint').style.transform === 'translate(-50%, 100%)') {
-            document.getElementById('imprint').style.visibility = 'hidden'; 
-            document.getElementById('imprint').style.display = 'none';
+    imprint.style.transform = 'translate(-50%, 100%)'; 
+    imprint.style.opacity = '0'; 
+    imprint.addEventListener('transitionend', function() {
+        if (imprint.style.transform === 'translate(-50%, 100%)') {
+            imprint.style.visibility = 'hidden'; 
+            imprint.style.display = 'none';
         }
     }, { once: true }); 
 }
 
 function openPrivacyPolicy() {
-  
-    document.getElementById('privacyPolicy').style.transition = 'none'; 
-
-    document.getElementById('privacyPolicy').style.display = 'flex';
-    document.getElementById('privacyPolicy').style.transform = 'translate(-50%, 100%)'; 
-    document.getElementById('privacyPolicy').style.opacity = '0'; 
-    document.getElementById('privacyPolicy').style.visibility = 'visible';
-
-
-    document.getElementById('privacyPolicy').offsetHeight; 
-
-    document.getElementById('privacyPolicy').style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-
-  
-    document.getElementById('privacyPolicy').style.transform = 'translate(-50%, -50%)';
-    document.getElementById('privacyPolicy').style.opacity = '1'; 
-
+    let privacyPolicy = document.getElementById('privacyPolicy');
+    privacyPolicy.style.transition = 'none'; 
+    privacyPolicy.style.display = 'flex';
+    privacyPolicy.style.transform = 'translate(-50%, 100%)'; 
+    privacyPolicy.style.opacity = '0'; 
+    privacyPolicy.style.visibility = 'visible';
+    privacyPolicy.offsetHeight; 
+    privacyPolicy.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    privacyPolicy.style.transform = 'translate(-50%, -50%)';
+    privacyPolicy.style.opacity = '1'; 
     closeControls();
     closeStory();
     closeImprint(event);
 }
 
 function closePrivacyPolicy(event) {
+    let privacyPolicy = document.getElementById('privacyPolicy');
     if (event.target.tagName.toLowerCase() === 'a') {
         return; 
     }
-    
-    document.getElementById('privacyPolicy').style.transform = 'translate(-50%, 100%)'; 
-    document.getElementById('privacyPolicy').style.opacity = '0'; 
-
-    document.getElementById('privacyPolicy').addEventListener('transitionend', function() {
-        if (document.getElementById('privacyPolicy').style.transform === 'translate(-50%, 100%)') {
-            document.getElementById('privacyPolicy').style.visibility = 'hidden'; 
-            document.getElementById('privacyPolicy').style.display = 'none';
+    privacyPolicy.style.transform = 'translate(-50%, 100%)'; 
+    privacyPolicy.style.opacity = '0'; 
+    privacyPolicy.addEventListener('transitionend', function() {
+        if (privacyPolicy.style.transform === 'translate(-50%, 100%)') {
+            privacyPolicy.style.visibility = 'hidden'; 
+            privacyPolicy.style.display = 'none';
         }
     }, { once: true }); 
 }
 
-// function updateControls() {
-//     console.log('Window height:', window.innerHeight);
-//     if (window.innerHeight <= 600) {
-//         document.getElementById('controlMoveLeft').innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button.png" />';
-//         document.getElementById('controlMoveRight').innerHTML = 'move right: a';
-//         document.getElementById('controlJump').innerHTML = 'jump with: b';
-//         document.getElementById('controlAttack').innerHTML = 'attack with: c';
-//     } else {
-//         document.getElementById('controlMoveLeft').innerHTML = 'move left: <b>A</b> or <b>←</b>';
-//         document.getElementById('controlMoveRight').innerHTML = 'move right: <b>D</b> or <b>→</b>';
-//         document.getElementById('controlJump').innerHTML = 'jump with: <b>spacebar</b>';
-//         document.getElementById('controlAttack').innerHTML = 'attack with: <b>F</b>';
-//     }
-// }
-
-// updateControls();
-
-// window.addEventListener('resize', updateControls);
-
 function updateControls() {
-    // Holen der Elemente
-    const moveLeftElement = document.getElementById('controlMoveLeft');
-    const moveRightElement = document.getElementById('controlMoveRight');
-    const jumpElement = document.getElementById('controlJump');
-    const attackElement = document.getElementById('controlAttack');
-
-    // Bedingungen für unterschiedliche Fensterhöhen und Spielstatus
+    let { moveLeft, moveRight, jump, attack } = getControlElements();
     if (window.innerHeight <= 600) {
         if (gameStarted) {
-            moveLeftElement.innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button.png" alt="" />';
-            moveRightElement.innerHTML = 'move right: <img src="./img/12_mobile_buttons/right_button.png" alt="" />';
-            jumpElement.innerHTML = 'jump with: <img src="./img/12_mobile_buttons/up_button.png" alt="" />';
-            attackElement.innerHTML = 'attack with: <img src="./img/12_mobile_buttons/throw_button.png" />';
+            moveLeft.innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button.png" alt="" />';
+            moveRight.innerHTML = 'move right: <img src="./img/12_mobile_buttons/right_button.png" alt="" />';
+            jump.innerHTML = 'jump with: <img src="./img/12_mobile_buttons/up_button.png" alt="" />';
+            attack.innerHTML = 'attack with: <img src="./img/12_mobile_buttons/throw_button.png" />';
         } else {
-            moveLeftElement.innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button2.png" alt="" />';
-            moveRightElement.innerHTML = 'move right: <img src="./img/12_mobile_buttons/right_button2.png" alt="" />';
-            jumpElement.innerHTML = 'jump with: <img src="./img/12_mobile_buttons/up_button2.png" alt="" />';
-            attackElement.innerHTML = 'attack with: <img src="./img/12_mobile_buttons/throw_button2.png" />';
+            moveLeft.innerHTML = 'move left: <img src="./img/12_mobile_buttons/left_button2.png" alt="" />';
+            moveRight.innerHTML = 'move right: <img src="./img/12_mobile_buttons/right_button2.png" alt="" />';
+            jump.innerHTML = 'jump with: <img src="./img/12_mobile_buttons/up_button2.png" alt="" />';
+            attack.innerHTML = 'attack with: <img src="./img/12_mobile_buttons/throw_button2.png" />';
         }
     } else {
-        moveLeftElement.innerHTML = 'move left: <b>A</b> or <b>←</b>';
-        moveRightElement.innerHTML = 'move right: <b>D</b> or <b>→</b>';
-        jumpElement.innerHTML = 'jump with: <b>spacebar</b>';
-        attackElement.innerHTML = 'attack with: <b>F</b>';
+        moveLeft.innerHTML = 'move left: <b>A</b> or <b>←</b>';
+        moveRight.innerHTML = 'move right: <b>D</b> or <b>→</b>';
+        jump.innerHTML = 'jump with: <b>spacebar</b>';
+        attack.innerHTML = 'attack with: <b>F</b>';
     }
 }
 
-// Initiales Update beim Laden der Seite
+function getControlElements() {
+    return {
+        moveLeft: document.getElementById('controlMoveLeft'),
+        moveRight: document.getElementById('controlMoveRight'),
+        jump: document.getElementById('controlJump'),
+        attack: document.getElementById('controlAttack')
+    };
+}
+
 document.addEventListener('DOMContentLoaded', updateControls);
 
-// Update bei jeder Größenänderung des Fensters
 window.addEventListener('resize', updateControls);
 

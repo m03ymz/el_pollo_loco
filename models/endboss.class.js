@@ -49,7 +49,7 @@ class Endboss extends MovableObject {
     energy = 100;
     firstEncounter = false;
 
-    hadFirstContact = false; // Variable zur Verfolgung, ob der Spieler den Endboss zum ersten Mal erreicht hat
+    hadFirstContact = false;
 
     constructor(world){
         super().loadImage(this.IMAGES_ALERT[0]);
@@ -64,37 +64,11 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-
-    // animate() {
-    //     setInterval(() => {
-    //         if (this.isDead()) {
-    //             this.handleDeath();        
-    //         } else if (this.isHurt()) {
-    //             this.playAnimation(this.IMAGES_HURT);
-    //         } else {
-    //             this.playAnimation(this.IMAGES_ALERT);
-    //         }   
-    //     }, 200);
-    // }
-
     activateWhenFirstEncounter() {
         if (this.firstEncounter) {
             this.startRunningToCharacter();
         }
-    }
-
-    // startRunningToCharacter() {
-    //     if (this.x > 2500) {
-    //         // Bewege den Endboss nach links bis auf X 2500
-    //         const interval = setInterval(() => {
-    //             if (this.x <= 2500) {
-    //                 clearInterval(interval); // Stoppe das Intervall, wenn der Endboss X 2500 erreicht hat
-    //             } else {
-    //                 this.moveLeft(); // Bewege den Endboss nach links
-    //             }
-    //         }, 200);
-    //     }
-    // }   
+    } 
 
     startRunningToCharacter() {
         if (this.x > 2600) {
@@ -133,10 +107,6 @@ class Endboss extends MovableObject {
     }
 
     handleDeath() {
-        // setTimeout(() => {
-        //     this.end_sound.loop = true;
-        //     this.end_sound.play();
-        // }, 2000);
         endfight_sound.pause();
         this.playAnimation(this.IMAGES_DEAD);
         win_sound.play();
@@ -153,29 +123,4 @@ class Endboss extends MovableObject {
             document.getElementById(`restartButton`).style.display = "flex";
         }, 2000);
     }
-
-    // animate() {
-    //     let hurtAnimationPlayed = false; // Variable, um den Zustand der Hurt-Animation zu verfolgen
-    //     let walkInterval; // Intervall für die Walk-Animation
-    
-    //     setInterval(() => {
-    //         if (this.isDead()) {
-    //             // this.playAnimation(this.IMAGES_DEAD); 
-    //             this.handleDeath();       
-    //         } else if (this.isHurt() && !hurtAnimationPlayed) {
-    //             this.playAnimation(this.IMAGES_HURT);
-    //             hurtAnimationPlayed = true; // Setzen Sie die Variable auf true, um anzuzeigen, dass die Hurt-Animation abgespielt wurde
-    //             clearInterval(walkInterval); // Stoppen Sie die Walk-Animation, falls sie läuft
-    //         } else if (hurtAnimationPlayed) {
-    //             this.playAnimation(this.IMAGES_WALK); // Nach dem Hurt wird die Walk-Animation abgespielt
-    //             if (!walkInterval) { // Starten Sie die Walk-Animation nur, wenn sie nicht bereits läuft
-    //                 walkInterval = setInterval(() => {
-    //                     this.moveLeft(); // Bewegen Sie den Endboss nach links
-    //                 }, 1000 / 60);
-    //             }
-    //         } else {
-    //             this.playAnimation(this.IMAGES_ALERT); // Vor dem Hurt wird die Alert-Animation abgespielt
-    //         }   
-    //     }, 200);
-    // }
 }

@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
-    hurt = false; // Zustand für Verletzungen
+    hurt = false;
 
     applyGravity() {
         setInterval(() => {
@@ -39,7 +39,6 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingRight(mo) {
-        // Überprüft, ob der rechte Rand des Charakters die linke Seite des anderen Objekts überschreitet
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
                this.x + this.width - this.offset.right < mo.x + mo.width - mo.offset.left &&
                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -52,14 +51,13 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
-            console.log('Hit! Updated Energy:', this.energy, 'Percentage:', this.percentage);
         }
     }
 
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
-        this.hurt = timePassed < 1.1; // Setze den hurt-Zustand
+        this.hurt = timePassed < 1.1;
         return this.hurt;
     }
 

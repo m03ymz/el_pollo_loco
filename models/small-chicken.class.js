@@ -44,36 +44,4 @@ class SmallChicken extends MovableObject {
             }
         }, 200);
     }
-
-    // checkCollisionWithCharacter(character) {
-    //     if (!this.isDead && this.isColliding(character)) {
-    //         console.log("Kollision mit Huhn");
-    //         // Überprüfen, ob der Charakter von oben auf das Huhn fällt
-    //         if (character.speedY < 0 && character.y + character.height < this.y + this.height + this.offset.top) {
-    //             this.isDead = true;
-    //             this.loadImages(this.IMAGES_DEAD); // Lade das Bild für "toten" Huhn
-    //             console.log("Bilder für totes Huhn geladen:", this.IMAGES_DEAD);
-    //             this.kill_chicken.volume = 0.01;
-    //             this.kill_chicken.currentTime = 0;
-    //             this.kill_chicken.play();
-    //             // Weitere Aktionen, die du bei der Kollision ausführen möchtest
-    //             // this.draw(this.world.ctx);
-    //         } else {
-    //             // Füge hier den Schaden hinzu, den der Charakter vom Huhn erleidet
-    //             // this.character.hit();
-    //         }
-    //     }
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -22,16 +22,10 @@ class EndbossAttack extends MovableObject {
     constructor(x, y) {
         super().loadImage('img/13_endboss_attack/1.png');
         this.loadImages(this.IMAGES);
-        // this.x = x;
-        // this.y = y;
-        // this.otherDirection = otherDirection;
         this.height = 100;
         this.width = 500;
-        // this.x = 500;
-        // this.y = 350;
         this.x = x;
         this.y = y;
-        // this.attack();
         this.animate();
     }
 
