@@ -1,3 +1,6 @@
+/**
+ * Represents a chicken enemy in the game.
+ */
 class Chicken extends MovableObject {
     y = 380;
     height = 55;
@@ -18,6 +21,10 @@ class Chicken extends MovableObject {
     };
     isDead = false;
 
+    /**
+     * Creates an instance of Chicken.
+     * @param {number} x - Initial x position of the chicken.
+     */
     constructor(x) {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -29,6 +36,9 @@ class Chicken extends MovableObject {
         this.animate();
     }
     
+    /**
+     * Handles the chicken's movement and animation.
+     */
     animate() {
         setInterval(() => {
             if (!this.isDead) {

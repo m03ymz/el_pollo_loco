@@ -1,3 +1,6 @@
+/**
+ * Represents the end boss in the game.
+ */
 class Endboss extends MovableObject {
 
     height = 400;
@@ -51,6 +54,10 @@ class Endboss extends MovableObject {
 
     hadFirstContact = false;
 
+    /**
+     * Creates an instance of Endboss.
+     * @param {Object} world - The world object where the end boss exists.
+     */
     constructor(world){
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_ALERT);
@@ -64,12 +71,18 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Activates the end boss when first encountered.
+     */
     activateWhenFirstEncounter() {
         if (this.firstEncounter) {
             this.startRunningToCharacter();
         }
     } 
 
+    /**
+     * Makes the end boss move towards the character when the boss is first encountered.
+     */
     startRunningToCharacter() {
         if (this.x > 2600) {
             const interval = setInterval(() => {
@@ -88,6 +101,9 @@ class Endboss extends MovableObject {
         }
     }   
 
+    /**
+     * Animates the end boss based on its state (e.g., attacking, walking, etc.).
+     */
     animate() {
         setInterval(() => {
             if (this.isDead()) {
@@ -106,6 +122,9 @@ class Endboss extends MovableObject {
         }, 200);
     }
 
+    /**
+     * Handles the end boss's death and manages game over behavior.
+     */
     handleDeath() {
         endfight_sound.pause();
         this.playAnimation(this.IMAGES_DEAD);

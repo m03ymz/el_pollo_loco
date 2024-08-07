@@ -1,3 +1,6 @@
+/**
+ * Manages the game world, including character interactions, level elements, and game state.
+ */
 class World {
     character = new Character();
     level = level1;
@@ -17,6 +20,11 @@ class World {
     endbossAttacks = [];
     lastHitTime = 0;
 
+    /**
+     * Creates an instance of World.
+     * @param {HTMLCanvasElement} canvas - The canvas element where the game is rendered.
+     * @param {Keyboard} keyboard - The keyboard input handler.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -27,10 +35,16 @@ class World {
         this.collectedBottles = [];
     }
 
+    /**
+     * Sets up the world by associating the character with the world.
+     */
     setWorld() {
         this.character.world = this;
     }
 
+    /**
+     * Runs the game loop, checking for collisions and updating game state.
+     */
     run() {
         setInterval(() => {
             this.checkCoinCollision();
@@ -46,6 +60,9 @@ class World {
         }, 50);
     }
 
+    /**
+     * Checks if the character has encountered the endboss for the first time.
+     */
     checkFirstEncounter() {
         if (this.character.firstEncounter()) {
             this.level.enemies.forEach((enemy) => {
@@ -61,6 +78,9 @@ class World {
         }
     }
 
+    /**
+     * Plays the endboss encounter melody and sound effects.
+     */
     playEndbossMelody() {
         background_sound.pause();
         background_melody.pause();
@@ -77,6 +97,9 @@ class World {
         };
     }
 
+    /**
+     * Checks if the player is throwing a bottle and processes it.
+     */
     checkThrowObjects() {
         if (this.keyboard.F && this.collectedBottles.length > 0 && !this.isThrowing) {
             this.isThrowing = true; 
@@ -90,6 +113,9 @@ class World {
         }
     }
 
+    /**
+     * Checks for collisions between the character and enemies, handling hits and enemy deaths.
+     */
     checkChickenCollision() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isDead) {
@@ -115,6 +141,10 @@ class World {
         this.removeDeadEnemy();
     }
 
+    /**
+     * Applies a knockback effect to the character when hit by an enemy.
+     * @param {Enemy} enemy - The enemy causing the knockback effect.
+     */
     knockback(enemy) {
         let targetX;
         if (this.character.otherDirection) {
@@ -129,6 +159,10 @@ class World {
         this.knockbackMoveInterval(targetX);
     }
 
+    /**
+     * Moves the character to a target position with a knockback effect.
+     * @param {number} targetX - The target x-coordinate for the knockback effect.
+     */
     knockbackMoveInterval(targetX) {
         let moveInterval = setInterval(() => {
         let step = 7; 
@@ -145,6 +179,9 @@ class World {
         }, 10);
     }
 
+    /**
+     * Removes dead enemies from the level.
+     */
     removeDeadEnemy() {
         this.level.enemies.forEach((enemy) => {
             if ((enemy instanceof Chicken || enemy instanceof SmallChicken) && enemy.isDead) { 
@@ -158,6 +195,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between the character and coins, updating the score and removing collected coins.
+     */
     checkCoinCollision() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
@@ -170,6 +210,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between the character and bottles, updating the inventory and removing collected bottles.
+     */
     checkBottleCollision() {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
@@ -183,6 +226,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between throwable objects and the endboss, applying damage and handling hits.
+     */
     checkBottleCollisionEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (bottle.isColliding(this.level.enemies[this.level.enemies.length-1])) {
@@ -204,15 +250,16 @@ class World {
         });
     }
 
+    /**
+     * Animates the endboss attack with sound effects.
+     */
     animateEndbossAttack() {
         let endbossAttack;
-        // Füge die EndbossAttack nach 2 Sekunden hinzu
         setTimeout(() => {
             endbossAttack = new EndbossAttack(this.level.enemies[this.level.enemies.length - 1].x - 325, this.level.enemies[this.level.enemies.length - 1].y + 300);
             this.endbossAttacks.push(endbossAttack);
             sandstorm_sound.play();
         }, 2600);
-        // Entferne die EndbossAttack nach weiteren 0.5 Sekunden (insgesamt nach 2.5 Sekunden)
         setTimeout(() => {
             let index = this.endbossAttacks.indexOf(endbossAttack);
             if (index !== -1) {
@@ -221,6 +268,9 @@ class World {
         }, 3400);
     }
 
+    /**
+     * Checks for collisions between the character and the endboss, handling damage and knockback effects.
+     */
     checkEndbossCollision() {
         if (this.character.isColliding(this.level.enemies[this.level.enemies.length-1])) {
             if (!this.character.isHurt()) {
@@ -235,6 +285,9 @@ class World {
         }
     }
 
+    /**
+     * Checks for collisions between the character and endboss attacks, handling damage and knockback effects.
+     */
     checkEndbossAttackCollision() {
         this.endbossAttacks.forEach((endbossAttack) => {
             if (this.character.isColliding(endbossAttack)) {
@@ -249,6 +302,9 @@ class World {
         });
     }
 
+    /**
+     * Applies a knockback effect to the character when hit by the endboss.
+     */
     knockbackEndbossHit() {
         let targetX = this.character.x - 250;
         let moveInterval = setInterval(() => {
@@ -261,6 +317,9 @@ class World {
         }, 10);
     }
 
+    /**
+     * Checks for collisions between throwable objects and chickens, applying damage and handling deaths.
+     */
     checkBottleCollisionChicken() {
         this.throwableObjects.forEach((bottle) => {
             this.level.enemies.slice(0, -1).forEach((enemy) => { 
@@ -280,6 +339,9 @@ class World {
         });
     }
 
+    /**
+     * Checks for collisions between the character and the water jet, gradually increasing the character's energy.
+     */
     checkWaterJetCollision() {
         if (this.character.isColliding(this.waterJet) && this.character.energy < 100) {
             // Setze einen Timer, um die Energie langsam auf 100 zu erhöhen
@@ -301,6 +363,9 @@ class World {
         }
     }
 
+    /**
+     * Clears and redraws the game world.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -316,12 +381,18 @@ class World {
         });
     }
 
+    /**
+     * Adds background objects to the map.
+     */
     addBackgroundObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.birds);
         this.addObjectsToMap(this.level.clouds);
     }
 
+    /**
+     * Adds status bars to the map.
+     */
     addStatusBars() {
         this.addToMap(this.statusBar); 
         this.addToMap(this.statusBarCoins);
@@ -329,6 +400,9 @@ class World {
         this.addToMap(this.statusBarEndboss);
     }
 
+    /**
+     * Adds game elements to the map.
+     */
     addGameElements() {
         this.addToMap(this.waterJet); 
         this.addToMap(this.character); 
@@ -339,12 +413,20 @@ class World {
         this.addObjectsToMap(this.endbossAttacks);
     }
 
+    /**
+     * Adds a list of objects to the map.
+     * @param {Object[]} objects - The objects to add.
+     */
     addObjectsToMap(objects){
         objects.forEach(o => {
             this.addToMap(o) 
         });
     }
 
+    /**
+     * Adds a single object to the map and handles its drawing.
+     * @param {Drawable} mo - The object to add.
+     */
     addToMap(mo) {
         if(mo.otherDirection) {
             this.flipImage(mo);
@@ -358,6 +440,10 @@ class World {
         } 
     }
 
+    /**
+     * Flips the image horizontally for objects facing the other direction.
+     * @param {Drawable} mo - The object to flip.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -365,6 +451,10 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * Flips the image back to the original direction after drawing.
+     * @param {Drawable} mo - The object to flip back.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

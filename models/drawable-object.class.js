@@ -1,3 +1,6 @@
+/**
+ * Represents a drawable object in the game.
+ */
 class DrawableObject {
     x = 120;
     y = 280;
@@ -13,15 +16,28 @@ class DrawableObject {
         bottom: 0
     };
 
+    /**
+     * Loads an image from the specified path.
+     * @param {string} path - The path to the image file.
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * Draws the object on the provided canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
+    /**
+     * Draws the bounding frame of the object (if implemented).
+     * Can be used for debugging purposes.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrame(ctx) {
         // if (this instanceof Character || this instanceof Chicken) {
         //     ctx.beginPath();
@@ -40,6 +56,10 @@ class DrawableObject {
         // }
     }
 
+    /**
+     * Loads multiple images into the image cache.
+     * @param {string[]} arr - Array of image paths.
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

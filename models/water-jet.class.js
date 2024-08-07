@@ -1,3 +1,6 @@
+/**
+ * Represents a water jet with animation.
+ */
 class WaterJet extends MovableObject {
     y = 70;
     width = 400;
@@ -48,6 +51,10 @@ class WaterJet extends MovableObject {
         'img/11_water/water90040.png'
     ];
 
+    /**
+     * Creates an instance of WaterJet.
+     * @param {number} x - The x-coordinate of the water jet.
+     */
     constructor(x) {
         super().loadImage('img/11_water/water90000.png');
         this.loadImages(this.IMAGES);
@@ -55,6 +62,9 @@ class WaterJet extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the water jet using a sequence of images.
+     */
     animate() {
         setInterval(() => {
                 this.playAnimation(this.IMAGES);

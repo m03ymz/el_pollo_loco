@@ -1,3 +1,6 @@
+/**
+ * Represents an attack from the end boss.
+ */
 class EndbossAttack extends MovableObject {
     IMAGES = [
         'img/13_endboss_attack/1.png',
@@ -19,6 +22,12 @@ class EndbossAttack extends MovableObject {
         bottom: 0
 
     };
+
+    /**
+     * Creates an instance of EndbossAttack.
+     * @param {number} x - The x-coordinate of the attack.
+     * @param {number} y - The y-coordinate of the attack.
+     */
     constructor(x, y) {
         super().loadImage('img/13_endboss_attack/1.png');
         this.loadImages(this.IMAGES);
@@ -29,6 +38,9 @@ class EndbossAttack extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts the animation of the attack.
+     */
     animate() {
         this.otherDirection = true;
         setInterval(() => {

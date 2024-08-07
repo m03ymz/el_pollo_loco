@@ -24,6 +24,9 @@ let win_sound = new Audio('audio/win.mp3');
 let lose_end_sound = new Audio('audio/lose_end.mp3');
 let win_end_sound = new Audio('audio/win_end.mp3');
 
+/**
+ * Initializes the game world and starts background sounds.
+ */
 function init(){
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);  
@@ -37,94 +40,11 @@ function init(){
     }, 2000);
 }
 
-// window.addEventListener("keydown", (e) => {
-//     if (e.keyCode == 37 || e.key == 'a') {
-//         keyboard.LEFT = true;
-//     }
-
-//     if (e.keyCode == 39 || e.key == 'd') {
-//         keyboard.RIGHT = true;
-//     }
-
-//     if (e.keyCode == 38 || e.key == 'w') {
-//         keyboard.UP = true;
-//     }
-
-//     if (e.keyCode == 40 || e.key == 's') {
-//         keyboard.DOWN = true;
-//     }
-
-//     if (e.keyCode == 32) {
-//         keyboard.SPACE = true;
-//     }
-
-//     if (e.keyCode == 70) {
-//         keyboard.F = true;
-//     }
-// });
-
-// const keyMap = {
-//     'ArrowLeft': 'LEFT',
-//     'a': 'LEFT',
-//     'ArrowRight': 'RIGHT',
-//     'd': 'RIGHT',
-//     'ArrowUp': 'UP',
-//     'w': 'UP',
-//     'ArrowDown': 'DOWN',
-//     's': 'DOWN',
-//     ' ': 'SPACE',
-//     'f': 'F'
-// };
-
-// window.addEventListener("keydown", (e) => {
-//     if (keyMap[e.key] !== undefined) {
-//         keyboard[keyMap[e.key]] = true;
-//     }
-// });
-
-// window.addEventListener("keyup", (e) => {
-//     if (e.keyCode == 37 || e.key == 'a') {
-//         keyboard.LEFT = false;
-//     }
-
-//     if (e.keyCode == 39 || e.key == 'd') {
-//         keyboard.RIGHT = false;
-//     }
-
-//     if (e.keyCode == 38 || e.key == 'w') {
-//         keyboard.UP = false;
-//     }
-
-//     if (e.keyCode == 40 || e.key == 's') {
-//         keyboard.DOWN = false;
-//     }
-
-//     if (e.keyCode == 32) {
-//         keyboard.SPACE = false;
-//     }
-
-//     if (e.keyCode == 70) {
-//         keyboard.F = false;
-//     }
-// });
-
-// window.addEventListener("keyup", (e) => {
-//     const keyMap = {
-//         '37': 'LEFT',  // Pfeil links
-//         '39': 'RIGHT', // Pfeil rechts
-//         '38': 'UP',    // Pfeil hoch
-//         '40': 'DOWN',  // Pfeil runter
-//         '32': 'SPACE', // Leertaste
-//         '70': 'F'      // 'F' Taste
-//     };
-
-//     const key = e.keyCode.toString();
-//     if (keyMap[key] || e.key === 'a' || e.key === 'd' || e.key === 'w' || e.key === 's') {
-//         keyboard[keyMap[key] || e.key.toUpperCase()] = false;
-//     }
-// });
-
-// Funktion zur Aktualisierung des Keyboard-Status
+/**
+ * Updates the state of the keyboard based on key events.
+ * @param {Event} e - The keyboard event.
+ * @param {boolean} isKeyDown - Indicates if the key is pressed.
+ */
 function updateKeyboardState(e, isKeyDown) {
     const keyMap = {
         '37': 'LEFT', // Pfeil nach links
@@ -145,12 +65,19 @@ function updateKeyboardState(e, isKeyDown) {
     }
 }
 
-// Ereignis-Listener für Tastendruck
+/**
+ * Adds an event listener for keydown events to update keyboard state.
+ */
 window.addEventListener("keydown", (e) => updateKeyboardState(e, true));
 
-// Ereignis-Listener für Tastenvorlassung
+/**
+ * Adds an event listener for keyup events to update keyboard state.
+ */
 window.addEventListener("keyup", (e) => updateKeyboardState(e, false));
 
+/**
+ * Sets up touch event listeners for virtual control buttons.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     let leftButton = document.getElementById('leftButton');
     let rightButton = document.getElementById('rightButton');
@@ -163,6 +90,12 @@ document.addEventListener('DOMContentLoaded', function() {
     setupTouchEvent(throwButton, () => { keyboard.F = true; }, () => { keyboard.F = false; });
 });
 
+/**
+ * Sets up touch event listeners for an element.
+ * @param {HTMLElement} element - The element to attach touch events to.
+ * @param {Function} actionStart - The action to perform on touchstart.
+ * @param {Function} actionEnd - The action to perform on touchend.
+ */
 function setupTouchEvent(element, actionStart, actionEnd) {
     element.addEventListener('touchstart', (e) => {
         if (e.cancelable) e.preventDefault();
@@ -176,7 +109,10 @@ function setupTouchEvent(element, actionStart, actionEnd) {
 }
 
 let gameStarted = false;
-    
+
+/**
+ * Starts the game by closing menus, applying design settings, and initializing game elements.
+ */
 function startGame() {
     closeControls();
     closeStory();
@@ -189,6 +125,9 @@ function startGame() {
     init();
 }
 
+/**
+ * Applies device-specific design adjustments for the game.
+ */
 function addDeviceSpecificDesigns() {
     addStandardStartGameSettings();
     addStandardControlinfosDisplay();
@@ -199,6 +138,9 @@ function addDeviceSpecificDesigns() {
     addBigTabletDesign();
 }
 
+/**
+ * Configures and displays standard game start settings.
+ */
 function addStandardStartGameSettings() {
     document.getElementById(`gameMenu`).style.display = "none";
     document.getElementById(`startButton`).style.display = "none";
@@ -212,6 +154,9 @@ function addStandardStartGameSettings() {
     document.getElementById(`controlsButton`).style.fontSize = "45px";
 }
 
+/**
+ * Sets standard display settings for control information elements.
+ */
 function addStandardControlinfosDisplay() {
     document.getElementById('controlInfos').style.cssText = 'height: 400px; width: 340px; top: 58%; margin-left: 550px;';
     document.querySelectorAll('#controlInfos span').forEach(span => {
@@ -224,6 +169,9 @@ function addStandardControlinfosDisplay() {
     });
 }
 
+/**
+ * Adjusts control information display for smaller screens.
+ */
 function addSmallerControlinfosDisplay() {
     if (window.matchMedia('(max-width: 1450px)').matches) {
         document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 260px; top: 49%; margin-left: 0; background-image: unset; color: black;';
@@ -237,6 +185,9 @@ function addSmallerControlinfosDisplay() {
     }
 }
 
+/**
+ * Adjusts control information display for mobile screens.
+ */
 function addMobileControlinfosDisplay() {
     if (window.matchMedia('(max-height: 600px)').matches) {
         document.getElementById('controlInfos').style.cssText = 'height: 200px; width: 200px; background-image: unset; color: black; top: 15%; margin-left: 0; transform: unset; left: unset;';
@@ -251,6 +202,9 @@ function addMobileControlinfosDisplay() {
     }
 }
 
+/**
+ * Adjusts the design for mobile screens with specific height and width.
+ */
 function addMobileDesign() {
     if (window.matchMedia('(max-height: 600px) and (max-width: 1024px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
@@ -268,6 +222,9 @@ function addMobileDesign() {
     }
 }
 
+/**
+ * Adjusts the design for tablet screens within specific dimensions.
+ */
 function addTabletDesign() {
     if (window.matchMedia('(min-height: 601px) and (max-height: 820px) and (min-width: 1024px) and (max-width: 1180px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
@@ -285,6 +242,9 @@ function addTabletDesign() {
     }
 }
 
+/**
+ * Adjusts the design for large tablet screens with specific dimensions.
+ */
 function addBigTabletDesign() {
     if (window.matchMedia('(min-height: 1024px) and (max-height: 1024px) and (min-width: 1366px) and (max-width: 1366px)').matches) {
         document.getElementById(`controlsText`).style.display = "none";
@@ -302,10 +262,16 @@ function addBigTabletDesign() {
     }
 }
 
+/**
+ * Reloads the current game page.
+ */
 function reloadGame() {
     window.location.reload();
 }
 
+/**
+ * Opens the controls menu with a sliding and fading animation based on device type.
+ */
 function openControls() {
     let controlInfos = document.getElementById('controlInfos');
     let isMobile = window.matchMedia('(max-height: 600px)').matches && gameStarted;
@@ -324,6 +290,9 @@ function openControls() {
     closePrivacyPolicy(event);
 }
 
+/**
+ * Closes the controls menu with a sliding and fading animation.
+ */
 function closeControls() {
     let controlInfos = document.getElementById('controlInfos');
     controlInfos.style.left = '100%'; 
@@ -336,6 +305,9 @@ function closeControls() {
     }, { once: true }); 
 }
 
+/**
+ * Opens the story section with a sliding and fading animation.
+ */
 function openStory() {
     let story = document.getElementById('story');
     story.style.transition = 'none';
@@ -352,6 +324,9 @@ function openStory() {
     closePrivacyPolicy(event);
 }
 
+/**
+ * Closes the story section with a sliding and fading animation.
+ */
 function closeStory() {
     let story = document.getElementById('story');
     story.style.left = '100%'; 
@@ -364,6 +339,9 @@ function closeStory() {
     }, { once: true }); 
 }
 
+/**
+ * Closes the story section with a sliding and fading animation.
+ */
 function muteSound() {
     const soundOnImage = document.getElementById('soundOn');
     if (soundOnImage.src.includes('sound_on.png')) {
@@ -375,6 +353,11 @@ function muteSound() {
     }
 }
 
+/**
+ * Mutes or unmutes all sound effects based on the given boolean value.
+ * 
+ * @param {boolean} mute - If true, mutes all sounds; if false, unmutes them.
+ */
 function muteAllSounds(mute) {
     background_sound.muted = mute;
     endfight_sound.muted = mute;
@@ -400,6 +383,9 @@ function muteAllSounds(mute) {
     win_end_sound.muted = mute;
 }
 
+/**
+ * Opens the imprint section with a sliding and fading animation.
+ */
 function openImprint() {
     let imprint = document.getElementById('imprint');
     imprint.style.transition = 'none'; 
@@ -416,6 +402,12 @@ function openImprint() {
     closePrivacyPolicy(event);
 }
 
+/**
+ * Closes the imprint section with a sliding and fading animation.
+ * If the event target is an anchor tag, the function exits early.
+ * 
+ * @param {Event} event - The event object triggered during the closing process.
+ */
 function closeImprint(event) {
     let imprint = document.getElementById('imprint');
     if (event.target.tagName.toLowerCase() === 'a') {
@@ -431,6 +423,9 @@ function closeImprint(event) {
     }, { once: true }); 
 }
 
+/**
+ * Opens the privacy policy section with a sliding and fading animation.
+ */
 function openPrivacyPolicy() {
     let privacyPolicy = document.getElementById('privacyPolicy');
     privacyPolicy.style.transition = 'none'; 
@@ -447,6 +442,12 @@ function openPrivacyPolicy() {
     closeImprint(event);
 }
 
+/**
+ * Closes the privacy policy section with a sliding and fading animation.
+ * If the event target is an anchor tag, the function exits early.
+ * 
+ * @param {Event} event - The event object triggered during the closing process.
+ */
 function closePrivacyPolicy(event) {
     let privacyPolicy = document.getElementById('privacyPolicy');
     if (event.target.tagName.toLowerCase() === 'a') {
@@ -462,6 +463,9 @@ function closePrivacyPolicy(event) {
     }, { once: true }); 
 }
 
+/**
+ * Updates the control display based on the device's screen height and game state.
+ */
 function updateControls() {
     let { moveLeft, moveRight, jump, attack } = getControlElements();
     if (window.innerHeight <= 600) {
@@ -484,6 +488,11 @@ function updateControls() {
     }
 }
 
+/**
+ * Retrieves the control elements from the DOM.
+ * 
+ * @returns {Object} An object containing the control elements.
+ */
 function getControlElements() {
     return {
         moveLeft: document.getElementById('controlMoveLeft'),
@@ -493,7 +502,13 @@ function getControlElements() {
     };
 }
 
+/**
+ * Adds an event listener to update controls when the DOM content is fully loaded.
+ */
 document.addEventListener('DOMContentLoaded', updateControls);
 
+/**
+ * Adds an event listener to update controls when the window is resized.
+ */
 window.addEventListener('resize', updateControls);
 

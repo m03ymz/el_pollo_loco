@@ -1,3 +1,6 @@
+/**
+ * Represents a collectible coin in the game.
+ */
 class Coin extends MovableObject {
     y = 150;
     height = 100;
@@ -13,6 +16,10 @@ class Coin extends MovableObject {
         bottom: 30
     };
 
+    /**
+     * Creates an instance of Coin.
+     * @param {number} x - Initial x position of the coin.
+     */
     constructor(x) {
         super().loadImage('img/8_coin/coin_1.png');
         this.loadImages(this.IMAGES);
@@ -20,6 +27,9 @@ class Coin extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Handles the coin's animation by alternating between images.
+     */
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES);

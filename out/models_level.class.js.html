@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/level.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/level.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class Level {
+    enemies;
+    cloud;
+    backgroundObjects;
+    level_end_x = 2420;
+    coins;
+    bottles;
+    birds;
+
+    /**
+     * Creates an instance of Level.
+     * @param {Array&lt;Enemy>} enemies - The list of enemies in the level.
+     * @param {Array&lt;Cloud>} clouds - The list of clouds in the level.
+     * @param {Array&lt;BackgroundObject>} backgroundObjects - The list of background objects in the level.
+     * @param {Array&lt;Bird>} birds - The list of birds in the level.
+     * @param {Array&lt;Coin>} coins - The list of coins in the level.
+     * @param {Array&lt;Bottle>} bottles - The list of bottles in the level.
+     */
+    constructor(enemies, clouds, backgroundObjects, birds, coins, bottles){
+        this.enemies = enemies;
+        this.clouds = clouds;
+        this.backgroundObjects = backgroundObjects;
+        this.birds = birds;
+        this.coins = this.setupCoins();
+        this.bottles = this.setupBottles();
+    }
+
+    /**
+     * Sets up the fixed and random coins for the level.
+     * @returns {Array&lt;Coin>} The list of coin objects in the level.
+     */
+    setupCoins() {
+        const coins = [];
+        const fixedCoins = [
+            {x: 360, y: 160}, {x: 400, y: 160}, {x: 440, y: 160}, {x: 480, y: 160}, {x: 520, y: 160},
+            {x: 400, y: 125}, {x: 400, y: 195}, {x: 440, y: 125}, {x: 440, y: 195}, {x: 440, y: 90},
+            {x: 440, y: 230}, {x: 560, y: 160}, {x: 600, y: 160}, {x: -350, y: 160}, {x: -300, y: 160},
+            {x: -250, y: 160}, {x: -300, y: 110}, {x: -300, y: 210}
+        ];
+
+        fixedCoins.forEach(coord => {
+            const coin = new Coin();
+            coin.x = coord.x;
+            coin.y = coord.y;
+            coins.push(coin);
+        });
+
+        this.generateRandomCoins(coins);
+        return coins;
+    }
+
+    /**
+     * Generates and adds random coins to the list.
+     * @param {Array&lt;Coin>} coins - The list of coin objects to add to.
+     */
+    generateRandomCoins(coins) {
+        for (let i = 0; i &lt; 10; i++) {
+            const coin = new Coin();
+            coin.x = 900 + Math.random() * 1500; 
+            coin.y = 100 + Math.random() * 200; 
+            coins.push(coin);
+        }
+    }
+
+    /**
+     * Sets up the fixed and random bottles for the level.
+     * @returns {Array&lt;Bottle>} The list of bottle objects in the level.
+     */
+    setupBottles() {
+        const bottles = [];
+        const fixedBottles = [
+            {x: -450, y: 340}, {x: -400, y: 340}, {x: -350, y: 340}
+        ];
+
+        fixedBottles.forEach(coord => {
+            const bottle = new Bottle();
+            bottle.x = coord.x;
+            bottle.y = coord.y;
+            bottles.push(bottle);
+        });
+        
+        this.generateRandomBottles(bottles);
+        return bottles;
+    }
+
+    /**
+     * Generates and adds random bottles to the list.
+     * @param {Array&lt;Bottle>} bottles - The list of bottle objects to add to.
+     */
+    generateRandomBottles(bottles) {
+        for (let i = 0; i &lt; 7; i++) {
+            const bottle = new Bottle();
+            bottle.x = 300 + Math.random() * 2000; 
+            bottle.y = 340; 
+            bottles.push(bottle);
+        }
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Bird.html">Bird</a></li><li><a href="Bottle.html">Bottle</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="Coin.html">Coin</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="EndbossAttack.html">EndbossAttack</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="StatusBarBottles.html">StatusBarBottles</a></li><li><a href="StatusBarCoins.html">StatusBarCoins</a></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="WaterJet.html">WaterJet</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addBigTabletDesign">addBigTabletDesign</a></li><li><a href="global.html#addDeviceSpecificDesigns">addDeviceSpecificDesigns</a></li><li><a href="global.html#addMobileControlinfosDisplay">addMobileControlinfosDisplay</a></li><li><a href="global.html#addMobileDesign">addMobileDesign</a></li><li><a href="global.html#addSmallerControlinfosDisplay">addSmallerControlinfosDisplay</a></li><li><a href="global.html#addStandardControlinfosDisplay">addStandardControlinfosDisplay</a></li><li><a href="global.html#addStandardStartGameSettings">addStandardStartGameSettings</a></li><li><a href="global.html#addTabletDesign">addTabletDesign</a></li><li><a href="global.html#closeControls">closeControls</a></li><li><a href="global.html#closeImprint">closeImprint</a></li><li><a href="global.html#closePrivacyPolicy">closePrivacyPolicy</a></li><li><a href="global.html#closeStory">closeStory</a></li><li><a href="global.html#getControlElements">getControlElements</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#muteAllSounds">muteAllSounds</a></li><li><a href="global.html#muteSound">muteSound</a></li><li><a href="global.html#openControls">openControls</a></li><li><a href="global.html#openImprint">openImprint</a></li><li><a href="global.html#openPrivacyPolicy">openPrivacyPolicy</a></li><li><a href="global.html#openStory">openStory</a></li><li><a href="global.html#reloadGame">reloadGame</a></li><li><a href="global.html#setupTouchEvent">setupTouchEvent</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#updateControls">updateControls</a></li><li><a href="global.html#updateKeyboardState">updateKeyboardState</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 07 2024 01:32:12 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

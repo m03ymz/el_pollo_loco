@@ -1,3 +1,6 @@
+/**
+ * Represents a bird object in the game.
+ */
 class Bird extends MovableObject {
     y = 20;
     width = 50;
@@ -11,6 +14,10 @@ class Bird extends MovableObject {
         'img/10_bird/Vulture_walk4.png',
     ];
 
+    /**
+     * Creates an instance of Bird.
+     * @param {number} x - The initial x-coordinate of the bird.
+     */
     constructor(x) {
         super().loadImage('img/10_bird/Vulture_walk1.png');
         this.loadImages(this.IMAGES);
@@ -19,6 +26,9 @@ class Bird extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Animates the bird by moving it and updating its image.
+     */
     animate(){
     setInterval(() => {
         this.BirdMoveLeft(); 
@@ -28,6 +38,9 @@ class Bird extends MovableObject {
     }, 150);
 }
 
+    /**
+     * Moves the bird to the left and resets its position if it moves out of view.
+     */
     BirdMoveLeft() {
         this.x -= this.speed; 
         if (this.x + this.width < -700) {

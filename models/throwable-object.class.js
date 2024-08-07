@@ -1,3 +1,6 @@
+/**
+ * Represents a throwable object with animations for throwing and splashing.
+ */
 class ThrowableObject extends MovableObject {
     IMAGES = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -23,6 +26,12 @@ class ThrowableObject extends MovableObject {
 
     splash = false;
 
+    /**
+     * Creates an instance of ThrowableObject.
+     * @param {number} x - The x-coordinate of the object.
+     * @param {number} y - The y-coordinate of the object.
+     * @param {boolean} otherDirection - Direction of the throw.
+     */
     constructor(x, y, otherDirection) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES);
@@ -36,6 +45,9 @@ class ThrowableObject extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Initiates the throw action with sound and applies gravity.
+     */
     throw() {
         throw_sound.currentTime = 0;
         throw_sound.volume = 0.5;
@@ -54,6 +66,9 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
+    /**
+     * Animates the throwable object with rotation images.
+     */
     animate() {
         let id = setInterval(() => {
             this.playAnimation(this.IMAGES);
@@ -66,6 +81,9 @@ class ThrowableObject extends MovableObject {
         }, 50);
     }
 
+    /**
+     * Animates the splash effect of the throwable object.
+     */
     animateSplash() {
         let id = setInterval(() => {
             this.playAnimation(this.IMAGES_SPLASH);

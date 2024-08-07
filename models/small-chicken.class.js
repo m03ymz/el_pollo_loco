@@ -1,3 +1,6 @@
+/**
+ * Represents a small chicken enemy in the game.
+ */
 class SmallChicken extends MovableObject {
     y = 380;
     height = 55;
@@ -18,6 +21,10 @@ class SmallChicken extends MovableObject {
     };
     isDead = false;
 
+    /**
+     * Creates an instance of SmallChicken.
+     * @param {number} x - The initial x-coordinate of the chicken.
+     */
     constructor(x) {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -29,6 +36,9 @@ class SmallChicken extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Starts the animation and movement of the chicken.
+     */
     animate() {
         setInterval(() => {
             if (!this.isDead) {

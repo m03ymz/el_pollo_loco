@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/endboss.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/endboss.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Represents the end boss in the game.
+ */
+class Endboss extends MovableObject {
+
+    height = 400;
+    width = 250;
+    y = 55;
+
+    IMAGES_ALERT = [
+        'img/4_enemie_boss_chicken/2_alert/G5.png',
+        'img/4_enemie_boss_chicken/2_alert/G6.png',
+        'img/4_enemie_boss_chicken/2_alert/G7.png',
+        'img/4_enemie_boss_chicken/2_alert/G8.png',
+        'img/4_enemie_boss_chicken/2_alert/G9.png',
+        'img/4_enemie_boss_chicken/2_alert/G10.png',
+        'img/4_enemie_boss_chicken/2_alert/G11.png',
+        'img/4_enemie_boss_chicken/2_alert/G12.png'
+    ];
+    IMAGES_HURT = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png' 
+    ];
+    IMAGES_WALK = [
+        "img/4_enemie_boss_chicken/1_walk/G1.png",
+        "img/4_enemie_boss_chicken/1_walk/G2.png",
+        "img/4_enemie_boss_chicken/1_walk/G3.png",
+        "img/4_enemie_boss_chicken/1_walk/G4.png"
+    ];
+    IMAGES_ATTACK = [
+        "img/4_enemie_boss_chicken/3_attack/G13.png",
+        "img/4_enemie_boss_chicken/3_attack/G14.png",
+        "img/4_enemie_boss_chicken/3_attack/G15.png",
+        "img/4_enemie_boss_chicken/3_attack/G16.png",
+        "img/4_enemie_boss_chicken/3_attack/G17.png",
+        "img/4_enemie_boss_chicken/3_attack/G18.png",
+        "img/4_enemie_boss_chicken/3_attack/G19.png",
+        "img/4_enemie_boss_chicken/3_attack/G20.png"
+    ];
+    IMAGES_DEAD = [
+        "img/4_enemie_boss_chicken/5_dead/G24.png",
+        "img/4_enemie_boss_chicken/5_dead/G25.png",
+        "img/4_enemie_boss_chicken/5_dead/G26.png"
+    ];
+    offset = {
+        top: 60,
+        left: 25,
+        right: 0,
+        bottom: 20
+    };
+    energy = 100;
+    firstEncounter = false;
+
+    hadFirstContact = false;
+
+    /**
+     * Creates an instance of Endboss.
+     * @param {Object} world - The world object where the end boss exists.
+     */
+    constructor(world){
+        super().loadImage(this.IMAGES_ALERT[0]);
+        this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_WALK);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.world = world;
+        this.x = 3000;
+        this.speed = 10;
+        this.animate();
+    }
+
+    /**
+     * Activates the end boss when first encountered.
+     */
+    activateWhenFirstEncounter() {
+        if (this.firstEncounter) {
+            this.startRunningToCharacter();
+        }
+    } 
+
+    /**
+     * Makes the end boss move towards the character when the boss is first encountered.
+     */
+    startRunningToCharacter() {
+        if (this.x > 2600) {
+            const interval = setInterval(() => {
+                if (this.x &lt;= 2600) {
+                    clearInterval(interval); 
+                } else {
+                    this.playAnimation(this.IMAGES_WALK);
+                    this.playAnimation(this.IMAGES_ATTACK);
+                for (let i = 0; i &lt; 5; i++) {
+                    setTimeout(() => {
+                        this.moveLeft();
+                    }, i * 200); 
+                }
+                }
+            }, 100);
+        }
+    }   
+
+    /**
+     * Animates the end boss based on its state (e.g., attacking, walking, etc.).
+     */
+    animate() {
+        setInterval(() => {
+            if (this.isDead()) {
+                this.handleDeath();        
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+                this.speed += 0.3; 
+                for (let i = 0; i &lt; 5; i++) {
+                    setTimeout(() => {
+                        this.moveLeft();
+                    }, i * 200); 
+                }
+            } else {
+                this.playAnimation(this.IMAGES_ATTACK);
+            }   
+        }, 200);
+    }
+
+    /**
+     * Handles the end boss's death and manages game over behavior.
+     */
+    handleDeath() {
+        endfight_sound.pause();
+        this.playAnimation(this.IMAGES_DEAD);
+        win_sound.play();
+        win_sound.onended = function() {
+            win_end_sound.loop = true;
+            win_end_sound.play();
+        };
+        document.getElementById('overlay').style.display = "unset";
+        document.getElementById('youWinImg').style.display = "unset";
+        for (let i = 1; i &lt; 9999; i++) window.clearInterval(i);
+        walking_sound.pause();
+        snore_sound.pause();
+        setTimeout(() => {
+            document.getElementById(`restartButton`).style.display = "flex";
+        }, 2000);
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Bird.html">Bird</a></li><li><a href="Bottle.html">Bottle</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="Coin.html">Coin</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="EndbossAttack.html">EndbossAttack</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="StatusBarBottles.html">StatusBarBottles</a></li><li><a href="StatusBarCoins.html">StatusBarCoins</a></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="WaterJet.html">WaterJet</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addBigTabletDesign">addBigTabletDesign</a></li><li><a href="global.html#addDeviceSpecificDesigns">addDeviceSpecificDesigns</a></li><li><a href="global.html#addMobileControlinfosDisplay">addMobileControlinfosDisplay</a></li><li><a href="global.html#addMobileDesign">addMobileDesign</a></li><li><a href="global.html#addSmallerControlinfosDisplay">addSmallerControlinfosDisplay</a></li><li><a href="global.html#addStandardControlinfosDisplay">addStandardControlinfosDisplay</a></li><li><a href="global.html#addStandardStartGameSettings">addStandardStartGameSettings</a></li><li><a href="global.html#addTabletDesign">addTabletDesign</a></li><li><a href="global.html#closeControls">closeControls</a></li><li><a href="global.html#closeImprint">closeImprint</a></li><li><a href="global.html#closePrivacyPolicy">closePrivacyPolicy</a></li><li><a href="global.html#closeStory">closeStory</a></li><li><a href="global.html#getControlElements">getControlElements</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#muteAllSounds">muteAllSounds</a></li><li><a href="global.html#muteSound">muteSound</a></li><li><a href="global.html#openControls">openControls</a></li><li><a href="global.html#openImprint">openImprint</a></li><li><a href="global.html#openPrivacyPolicy">openPrivacyPolicy</a></li><li><a href="global.html#openStory">openStory</a></li><li><a href="global.html#reloadGame">reloadGame</a></li><li><a href="global.html#setupTouchEvent">setupTouchEvent</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#updateControls">updateControls</a></li><li><a href="global.html#updateKeyboardState">updateKeyboardState</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Aug 07 2024 01:32:12 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

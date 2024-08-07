@@ -1,3 +1,6 @@
+/**
+ * Represents the main character in the game.
+ */
 class Character extends MovableObject {
 
     height = 250;
@@ -77,6 +80,9 @@ class Character extends MovableObject {
     };
     energy = 100;
 
+    /**
+     * Creates an instance of Character and initializes animations.
+     */
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -89,6 +95,9 @@ class Character extends MovableObject {
         this.animate();
     }
     
+    /**
+     * Handles character animations and movements based on keyboard input.
+     */
     animate() {
 
         let idleTime = 0;
@@ -157,10 +166,16 @@ class Character extends MovableObject {
         }, 150);
     }
     
+    /**
+     * Makes the character jump.
+     */
     jump() {
         this.speedY = 30;
     }
 
+    /**
+     * Handles the character's death scenario.
+     */
     handleDeath() {
         background_sound.pause();
         background_melody.pause();

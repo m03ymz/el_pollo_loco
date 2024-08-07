@@ -1,4 +1,8 @@
 let level1;
+
+/**
+ * Initializes the level with various game objects including chickens, clouds, background objects, and birds.
+ */
 function initLevel() {
 level1 = new Level(
     [
@@ -69,15 +73,16 @@ level1 = new Level(
     ]
 );
 
-let intervalTime = 5000; // Starte mit einem Intervall von 5 Sekunden
+let intervalTime = 5000;
 
+/**
+ * Periodically adds new Chicken instances to the level, decreasing the interval by 200ms until below 3000ms.
+ */
 const addChickenInterval = setInterval(() => {
-    level1.enemies.splice(level1.enemies.length - 1, 0, new Chicken(2500)); // Füge ein neues Huhn bei x = 2500 hinzu
-    intervalTime -= 200; // Verringere die Verzögerungszeit für das nächste Intervall
-    
-    // Überprüfe, ob die Verzögerungszeit unter 3000 fällt, um sie nicht weiter zu verringern
+    level1.enemies.splice(level1.enemies.length - 1, 0, new Chicken(2500)); 
+    intervalTime -= 200; 
     if (intervalTime < 3000) {
-        clearInterval(addChickenInterval); // Stoppe das Intervall, wenn die Verzögerungszeit unter 3 Sekunden liegt
+        clearInterval(addChickenInterval);
     }
 }, intervalTime);
 }
