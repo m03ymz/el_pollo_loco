@@ -17,6 +17,7 @@ let throw_sound = new Audio('audio/throw.mp3');
 let throw_hit_sound = new Audio('audio/throw_hit.mp3');
 let endboss_scream_sound = new Audio('audio/endboss_scream.mp3');
 let sandstorm_sound = new Audio('audio/sandstorm.mp3');
+let explosion_sound = new Audio('audio/explosion.mp3');
 let jump_sound = new Audio('audio/jump.mp3');
 let snore_sound = new Audio('audio/snore.mp3');
 let game_over_sound = new Audio('audio/game_over.mp3');
@@ -375,6 +376,7 @@ function muteAllSounds(mute) {
     throw_hit_sound.muted = mute;
     endboss_scream_sound.muted = mute;
     sandstorm_sound.muted = mute;
+    explosion_sound.muted = mute;
     jump_sound.muted = mute;
     snore_sound.muted = mute;
     game_over_sound.muted = mute;

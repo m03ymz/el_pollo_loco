@@ -500,22 +500,6 @@ canvas {
     width: 40px;
 }
 
-/* #muteButton .default-img {
-    display: unset; 
-}
-
-#muteButton .hover-img {
-    display: none; 
-}
-
-#muteButton:hover .default-img {
-    display: none; 
-}
-
-#muteButton:hover .hover-img {
-    display: unset; 
-} */
-
 #muteButton:hover {
     background-image: url('./img/bg4.jpg');
     color: antiquewhite; 

@@ -19,6 +19,7 @@ class World {
     firstEncounter = false;
     endbossAttacks = [];
     lastHitTime = 0;
+    hitCount = 0;
 
     /**
      * Creates an instance of World.
@@ -232,7 +233,7 @@ class World {
     checkBottleCollisionEndboss() {
         this.throwableObjects.forEach((bottle) => {
             if (bottle.isColliding(this.level.enemies[this.level.enemies.length-1])) {
-                if (!this.level.enemies[this.level.enemies.length-1].isHurt()) {
+                if (!this.level.enemies[this.level.enemies.length-1].isEndbossHurt()) {
                     this.level.enemies[this.level.enemies.length-1].hit();
                     bottle.splash = true;
                     this.statusBarEndboss.setPercentage(this.level.enemies[this.level.enemies.length-1].energy);
@@ -244,14 +245,24 @@ class World {
                     setTimeout(() => {
                         endboss_scream_sound.play();
                     }, 200);
-                    this.animateEndbossAttack();  
+                    this.animateEndbossAttack();    
+                    this.hitCount++;
+                    if (this.hitCount === 1) {
+                        this.animateEndbossAttack2();
+                    } else if (this.hitCount === 2) {
+                        this.animateEndbossAttack3();
+                    } else if (this.hitCount === 3) {
+                        this.animateEndbossAttack4();
+                    } else {
+                        this.animateEndbossAttack5();
+                    }
                 }
             }
         });
     }
 
     /**
-     * Animates the endboss attack with sound effects.
+     * Animates the endboss attack 1 with sound effects.
      */
     animateEndbossAttack() {
         let endbossAttack;
@@ -259,13 +270,73 @@ class World {
             endbossAttack = new EndbossAttack(this.level.enemies[this.level.enemies.length - 1].x - 325, this.level.enemies[this.level.enemies.length - 1].y + 300);
             this.endbossAttacks.push(endbossAttack);
             sandstorm_sound.play();
-        }, 2600);
+        }, 2100);
         setTimeout(() => {
             let index = this.endbossAttacks.indexOf(endbossAttack);
             if (index !== -1) {
                 this.endbossAttacks.splice(index, 1);
             }
-        }, 3400);
+        }, 2900);
+    }
+
+    /**
+     * Animates the endboss attack 2 with sound effects.
+     */
+    animateEndbossAttack2() {
+        let endbossAttack;
+        setTimeout(() => {
+            endbossAttack = new EndbossAttack2(
+                this.level.enemies[this.level.enemies.length - 1].x - 200,
+                this.level.enemies[this.level.enemies.length - 1].y + 50
+            );
+            this.endbossAttacks.push(endbossAttack);
+            sandstorm_sound.play();
+        }, 2200);
+    }
+
+    /**
+     * Animates the endboss attack 3 with sound effects.
+     */
+    animateEndbossAttack3() {
+        let endbossAttack;
+        setTimeout(() => {
+            endbossAttack = new EndbossAttack3(
+                this.level.enemies[this.level.enemies.length - 1].x - 200,
+                this.level.enemies[this.level.enemies.length - 1].y + 120
+            );
+            this.endbossAttacks.push(endbossAttack);
+            sandstorm_sound.play();
+        }, 2200);
+    }
+
+    /**
+     * Animates the endboss attack 4 with sound effects.
+     */
+    animateEndbossAttack4() {
+        let endbossAttack;
+        setTimeout(() => {
+            endbossAttack = new EndbossAttack4(
+                this.level.enemies[this.level.enemies.length - 1].x - 200,
+                this.level.enemies[this.level.enemies.length - 1].y + 120
+            );
+            this.endbossAttacks.push(endbossAttack);
+            sandstorm_sound.play();
+        }, 2200);
+    }
+
+    /**
+     * Animates the endboss attack 5 with sound effects.
+     */
+    animateEndbossAttack5() {
+        let endbossAttack;
+        setTimeout(() => {
+            endbossAttack = new EndbossAttack5(
+                this.level.enemies[this.level.enemies.length - 1].x - 200,
+                this.level.enemies[this.level.enemies.length - 1].y + 120
+            );
+            this.endbossAttacks.push(endbossAttack);
+            sandstorm_sound.play();
+        }, 2200);
     }
 
     /**
@@ -281,6 +352,7 @@ class World {
                 rooster2_sound.play();
                 this.statusBar.setPercentage(this.character.energy);
                 this.knockbackEndbossHit();
+                // this.knockbackEndboss(Endboss);
             }
         }
     }
@@ -293,10 +365,15 @@ class World {
             if (this.character.isColliding(endbossAttack)) {
                 if (!this.character.isHurt()) {
                     this.character.hit();
-                    scream_sound.volume = 0.3;
-                    scream_sound.play();
+                    explosion_sound.volume = 0.5;
+                    explosion_sound.play();
+                    setTimeout(() => {
+                        scream_sound.volume = 0.7;
+                        scream_sound.play();
+                    }, 500);
                     this.statusBar.setPercentage(this.character.energy);
-                    this.knockbackEndbossHit();
+                    this.knockbackEndboss(endbossAttack);
+                    endbossAttack.explode();
                 }
             }
         });
@@ -305,15 +382,53 @@ class World {
     /**
      * Applies a knockback effect to the character when hit by the endboss.
      */
-    knockbackEndbossHit() {
-        let targetX = this.character.x - 250;
-        let moveInterval = setInterval(() => {
-            let step = 7;
-            if (this.character.x > targetX) {
-                this.character.x -= step;
+     knockbackEndbossHit() {
+         let targetX = this.character.x - 250;
+         let moveInterval = setInterval(() => {
+             let step = 7;
+             if (this.character.x > targetX) {
+                 this.character.x -= step;
+             } else {
+                 clearInterval(moveInterval);
+             }
+         }, 10);
+     }
+
+    /**
+     * Applies a knockback effect to the character when hit by an enemy.
+     * @param {EndbossAttack} endbossAttack - The enemy causing the knockback effect.
+     */
+    knockbackEndboss(endbossAttack) {
+        let targetX;
+        if (this.character.otherDirection) {
+            if (this.character.isCollidingRight(endbossAttack)) {
+                targetX = this.character.x - 250;
             } else {
-                clearInterval(moveInterval);
+                targetX = this.character.x + 100;
             }
+        } else {
+                targetX = this.character.x - 250;
+        }
+        this.knockbackMoveInterval(targetX);
+    }
+
+    /**
+     * Moves the character to a target position with a knockback effect.
+     * @param {number} targetX - The target x-coordinate for the knockback effect.
+     */
+    knockbackMoveInterval(targetX) {
+        let moveInterval = setInterval(() => {
+        let step = 7; 
+        if (Math.abs(this.character.x - targetX) > step) { 
+            if (this.character.x < targetX) {
+                this.character.x += step;
+            } else if (this.character.x > targetX) {
+                this.character.x -= step;
+            }
+        } else {
+            this.character.x = targetX;
+            clearInterval(moveInterval);
+        }
         }, 10);
     }
 
@@ -344,22 +459,15 @@ class World {
      */
     checkWaterJetCollision() {
         if (this.character.isColliding(this.waterJet) && this.character.energy < 100) {
-            // Setze einen Timer, um die Energie langsam auf 100 zu erhöhen
             let increaseEnergyTimer = setInterval(() => {
-                // Erhöhe die Energie des Charakters um einen kleinen Betrag
-                this.character.energy += 1; // Ändern Sie die Inkrementierung nach Bedarf
+                this.character.energy += 1; 
                 charge_sound.volume = 0.5;
                 charge_sound.play();
-    
-                // Aktualisiere die StatusBar, um die Energieänderung anzuzeigen
                 this.statusBar.setPercentage(this.character.energy);
-    
-                // Überprüfe, ob die Energie 100 erreicht hat
                 if (this.character.energy >= 100) {
-                    // Beende den Timer, wenn die Energie 100 erreicht hat
                     clearInterval(increaseEnergyTimer);
                 }
-            }, 100); // Ändern Sie das Intervall nach Bedarf (zum Beispiel 100 für alle 100 Millisekunden)
+            }, 100); 
         }
     }
 

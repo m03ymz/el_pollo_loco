@@ -12,16 +12,21 @@ class EndbossAttack extends MovableObject {
         'img/13_endboss_attack/7.png',
         'img/13_endboss_attack/8.png',
         'img/13_endboss_attack/9.png',
-        'img/13_endboss_attack/10.png',
+        'img/13_endboss_attack/10.png'
     ];
-    
-    offset = {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
 
-    };
+    OFFSETS = [
+        { top: 50, left: 200, right: 200, bottom: 0 },  
+        { top: 50, left: 200, right: 200, bottom: 0 },  
+        { top: 50, left: 140, right: 140, bottom: 0 },  
+        { top: 50, left: 60, right: 60, bottom: 0 },   
+        { top: 40, left: 20, right: 20, bottom: 0 },   
+        { top: 20, left: 10, right: 10, bottom: 0 },   
+        { top: 20, left: 0, right: 0, bottom: 0 },   
+        { top: 10, left: 0, right: 0, bottom: 0 },   
+        { top: 10, left: 15, right: 15, bottom: 0 },   
+        { top: 10, left: 100, right: 100, bottom: 0 }    
+    ];
 
     /**
      * Creates an instance of EndbossAttack.
@@ -35,6 +40,7 @@ class EndbossAttack extends MovableObject {
         this.width = 500;
         this.x = x;
         this.y = y;
+        this.offset = this.OFFSETS[0];
         this.animate();
     }
 
@@ -43,8 +49,15 @@ class EndbossAttack extends MovableObject {
      */
     animate() {
         this.otherDirection = true;
+        let currentImageIndex = 0;
         setInterval(() => {
-            this.playAnimation(this.IMAGES);
+            this.playAnimation([this.IMAGES[currentImageIndex]]);
+            const offset = this.OFFSETS[currentImageIndex];
+            this.offset.top = offset.top;
+            this.offset.left = offset.left;
+            this.offset.right = offset.right;
+            this.offset.bottom = offset.bottom;
+            currentImageIndex = (currentImageIndex + 1) % this.IMAGES.length;
         }, 75);
     }
 }

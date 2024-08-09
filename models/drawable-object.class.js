@@ -47,7 +47,7 @@ class DrawableObject {
         //     ctx.stroke();
         // }
 
-        // if (this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof Bottle || this instanceof ThrowableObject || this instanceof SmallChicken || this instanceof Endboss || this instanceof EndbossAttack) {
+        // if (this instanceof Character || this instanceof Chicken || this instanceof Coin || this instanceof Bottle || this instanceof ThrowableObject || this instanceof SmallChicken || this instanceof Endboss || this instanceof EndbossAttack || this instanceof EndbossAttack2 || this instanceof EndbossAttack3 || this instanceof EndbossAttack4 || this instanceof EndbossAttack5) {
         //     ctx.beginPath();
         //     ctx.lineWidth = '5';
         //     ctx.strokeStyle = 'red';

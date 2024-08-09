@@ -89,6 +89,17 @@ class MovableObject extends DrawableObject {
     }
 
     /**
+     * Checks if the end boss was hurt within the last 2.2 seconds.
+     * @returns {boolean} True if the end boss was recently hurt, otherwise false.
+     */
+    isEndbossHurt() {
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;
+        this.hurt = timePassed < 2.2;
+        return this.hurt;
+    }
+
+    /**
      * Checks if the object is dead (energy is zero).
      * @returns {boolean} True if dead, otherwise false.
      */
